@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  inputValue = '';
-
-  onInput(ev: any) {
-    console.log(ev.target.value);
-    this.inputValue = ev.target.value;
-  }
 }
