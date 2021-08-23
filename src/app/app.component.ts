@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  modelTest = '';
 
+  getModelValue() {
+    console.log(this.modelTest);
+    return this.modelTest;
+  }
+
+  setModelValue() {
+    this.modelTest = 'Updated the model value'
+  }
 }
