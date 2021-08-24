@@ -6,14 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  modelTest = '';
 
-  getModelValue() {
-    console.log(this.modelTest);
-    return this.modelTest;
+  login(formDetails: any) {
+    console.log(formDetails.form.value);
+    console.log(formDetails.form.controls['username'].value, 'username');
+    console.log(formDetails.form.controls['password'].value, 'password');
+
   }
 
-  setModelValue() {
-    this.modelTest = 'Updated the model value'
+  confirmMethod(confirmValue: any) {
+    console.log(confirmValue.form.value);
+  }
+
+  changeEvent(confirmForm: any) {
+    console.log(confirmForm.form.value);
   }
 }

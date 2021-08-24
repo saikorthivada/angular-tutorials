@@ -1,7 +1,22 @@
-<input type="text" placeholder="ng model test" [(ngModel)]="modelTest" id="modelId"/>
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+    <input placeholder="username" type="text" ngModel name="username" 
+    [ngModelOptions]="{updateOn: 'blur'}" (ngModelChange)="changeEvent(loginForm)"/>
+    <br>
+    <br>
+    <input placeholder="password" type="password" ngModel name="password" 
+    (ngModelChange)="changeEvent(loginForm)"/>
+    <br>
+    <br>
+    <button type="submit">Login</button>
+</form>
 
-<p id="paraModelId">{{modelTest}}</p>
 
-<button (click)="getModelValue()">Check value</button>
-
-<button (click)="setModelValue()" id="setValue">Set value</button>
+<form #confirmForm="ngForm" (ngSubmit)="confirmMethod(confirmForm)">
+    <input placeholder="password" type="password" ngModel [ngModelOptions]="{standalone: true}"/>
+    <br>
+    <br>
+    <input placeholder="new password" type="password" ngModel name="somename"/>
+    <br>
+    <br>
+    <button type="submit">Confirm btn</button>
+</form>
