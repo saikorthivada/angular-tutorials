@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
+  confirmValues: any;
   login(formDetails: any) {
     console.log(formDetails.form.value);
     console.log(formDetails.form.controls['username'].value, 'username');
@@ -16,6 +16,7 @@ export class AppComponent {
 
   confirmMethod(confirmValue: any) {
     console.log(confirmValue.form.value);
+    this.confirmValues = confirmValue.form.value;
   }
 
   changeEvent(confirmForm: any) {

@@ -1,22 +1,24 @@
 <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
     <input placeholder="username" type="text" ngModel name="username" 
-    [ngModelOptions]="{updateOn: 'blur'}" (ngModelChange)="changeEvent(loginForm)"/>
+    [ngModelOptions]="{updateOn: 'blur'}" (ngModelChange)="changeEvent(loginForm)"
+    id="username"/>
     <br>
     <br>
     <input placeholder="password" type="password" ngModel name="password" 
-    (ngModelChange)="changeEvent(loginForm)"/>
+    (ngModelChange)="changeEvent(loginForm)" id="password"/>
     <br>
     <br>
-    <button type="submit">Login</button>
+    <button type="submit" id="submitId">Login</button>
 </form>
 
 
-<form #confirmForm="ngForm" (ngSubmit)="confirmMethod(confirmForm)">
-    <input placeholder="password" type="password" ngModel [ngModelOptions]="{standalone: true}"/>
+<form #confirmForm="ngForm" (ngSubmit)="confirmMethod(confirmForm)" id="confirmFormId">
+    <input placeholder="password" type="password" ngModel 
+    [ngModelOptions]="{standalone: true}" name="password"/>
     <br>
     <br>
     <input placeholder="new password" type="password" ngModel name="somename"/>
     <br>
     <br>
-    <button type="submit">Confirm btn</button>
+    <button type="submit" id="confirmButton">Confirm btn</button>
 </form>
