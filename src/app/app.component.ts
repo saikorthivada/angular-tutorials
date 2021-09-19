@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  loginFormObj = {
+    username: '',
+    password: ''
+  }
 
+  loginSubmit() {
+    console.log(this.loginFormObj);
+  }
 }
