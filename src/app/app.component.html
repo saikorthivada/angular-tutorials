@@ -1,11 +1,11 @@
 <form (ngSubmit)="loginSubmit()">
     <input placeholder="username" 
-    [(ngModel)]="loginFormObj.username" name="username" />
+    [(ngModel)]="loginFormObj.username" name="username" id="usernameId"/>
     <br>
     <br>
     <input placeholder="password" 
-    [(ngModel)]="loginFormObj.password" name="password" />
+    [(ngModel)]="loginFormObj.password" name="password" id="passwordId"/>
     <br>
     <br>
-    <button type="submit">Login</button>
+    <button type="submit" id="buttonId">Login</button>
 </form>
