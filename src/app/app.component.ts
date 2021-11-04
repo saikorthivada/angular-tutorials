@@ -6,12 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  loginFormObj = {
+  registerObj = {
     username: '',
-    password: ''
-  }
+    password: '',
+    gender: ''
+  };
 
-  loginSubmit() {
-    console.log(this.loginFormObj);
+  emailPattern = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+  passwordPattern = new RegExp(/(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{5,10}/);
+
+  register() {
+    console.log(this.registerObj);
   }
 }
