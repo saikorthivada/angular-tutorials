@@ -1,33 +1,3 @@
-<form (ngSubmit)="register()" #registerForm="ngForm">
-    <div>
-        <input placeholder="username" name="username" [(ngModel)]="registerObj.username" required #name="ngModel" [pattern]="emailPattern" id="username"/>
-        <div id="usernameErrors" *ngIf="name.invalid && (name.touched || name.dirty)">
-            <span *ngIf="name.errors?.required">This field required</span>
-            <span *ngIf="name.errors?.pattern">Please enter a valid email pattern</span>
+<input placeholder="user name" [formControl]="username"/>
 
-        </div>
-    </div>
-    <br>
-    <br>
-    <div>
-        <input placeholder="password" name="password" [(ngModel)]="registerObj.password" required #password="ngModel" [pattern]="passwordPattern" id="password"/>
-        <div id="passwordErrors" *ngIf="password.invalid && (password.touched || password.dirty)">
-            <span *ngIf="password.errors?.required">This field required</span>
-            <span *ngIf="password.errors?.pattern">This field should have min of 5 char and 1 alphabet, 1 numeric and atleast 1 special char</span>
-        </div>
-    </div>
-    <br>
-    <br>
-    <div>
-        <select name="gender" [(ngModel)]="registerObj.gender" required #gender="ngModel" id="gender">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        </select>
-        <div id="genderErrors" *ngIf="gender.invalid && (gender.touched || gender.dirty)">
-            <span>This field required</span>
-        </div>
-    </div>
-    <br>
-    <br>
-    <button id="submitButton" type="submit" [disabled]="registerForm.invalid">Register</button>
-</form>
+{{username.value}}
