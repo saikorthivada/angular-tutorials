@@ -1,3 +1,15 @@
-<input placeholder="user name" [formControl]="username" id="usernameInput"/>
-
-<span id="displayUsernameElement">{{username.value}}</span>
+<input placeholder="username" type="email" [formControl]="email" >
+<div *ngIf="email.invalid && (email.touched || email.dirty)">
+    <p *ngIf="email?.errors?.required">Email is required</p>
+    <p *ngIf="email?.errors?.pattern">Enter a valid email pattern</p>
+</div>
+<br>
+<br>
+<input placeholder="password" type="password" [formControl]="password">
+<div *ngIf="password.invalid && (password.touched || password.dirty)">
+    <p *ngIf="password?.errors?.required">Password is required</p>
+    <p *ngIf="password?.errors?.pattern">Enter a password with min of 5 char with atleast 1 alphabet 1 numeric value and one special char</p>
+</div>
+<br>
+<br>
+<button type="button" (click)="login()" [disabled]="email.invalid || password.invalid">Login</button>
