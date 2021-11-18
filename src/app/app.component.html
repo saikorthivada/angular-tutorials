@@ -1,15 +1,15 @@
-<input placeholder="username" type="email" [formControl]="email" >
+<input placeholder="username" type="email" [formControl]="email" id="emailElement">
 <div *ngIf="email.invalid && (email.touched || email.dirty)">
-    <p *ngIf="email?.errors?.required">Email is required</p>
-    <p *ngIf="email?.errors?.pattern">Enter a valid email pattern</p>
+    <p *ngIf="email?.errors?.required" id="emailRequired">Email is required</p>
+    <p *ngIf="email?.errors?.pattern" id="emailPattern">Enter a valid email pattern</p>
 </div>
 <br>
 <br>
-<input placeholder="password" type="password" [formControl]="password">
-<div *ngIf="password.invalid && (password.touched || password.dirty)">
+<input placeholder="password" type="password" [formControl]="password" id="passwordElement">
+<div *ngIf="password.invalid && (password.touched || password.dirty)" id="passwordValidations">
     <p *ngIf="password?.errors?.required">Password is required</p>
     <p *ngIf="password?.errors?.pattern">Enter a password with min of 5 char with atleast 1 alphabet 1 numeric value and one special char</p>
 </div>
 <br>
 <br>
-<button type="button" (click)="login()" [disabled]="email.invalid || password.invalid">Login</button>
+<button type="button" id="loginButton" (click)="login()" [disabled]="email.invalid || password.invalid">Login</button>
