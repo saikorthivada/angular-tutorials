@@ -1,5 +1,5 @@
-<input placeholder="dynamic value" [formControl]="username"/>
+<input placeholder="dynamic value" [formControl]="username" id="username"/>
 
 {{username.value}}
 
-<button type="button" (click)="changeFormControl()">Change form control</button>
+<button type="button" (click)="changeFormControl()" id="buttonID">Change form control</button>
