@@ -1,5 +1,6 @@
-<input placeholder="dynamic value" [formControl]="username" id="username"/>
+<input placeholder="username" [formControl]="username">
 
-{{username.value}}
-
-<button type="button" (click)="changeFormControl()" id="buttonID">Change form control</button>
+<div *ngIf="username.invalid && (username.touched || username.dirty)">
+    <p *ngIf="username?.errors?.required">username is required</p>
+</div>
+<button (click)="changeValidations()">Make username as required</button>

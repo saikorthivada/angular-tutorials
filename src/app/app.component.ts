@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Form, FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +7,10 @@ import { Form, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+ username: FormControl = new FormControl('');
 
-  username: FormControl = new FormControl('');
-
-  changeFormControl() {
-    this.username.setValue('dynamic value');
-  }
+ changeValidations() {
+   this.username.setValidators([Validators.required]);
+   this.username.updateValueAndValidity();
+ }
 }
