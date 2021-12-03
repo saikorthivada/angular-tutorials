@@ -7,7 +7,6 @@ describe('AppComponent', () => {
 
   let fixture: ComponentFixture<AppComponent>;
   let componentInstance: AppComponent;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -22,23 +21,27 @@ describe('AppComponent', () => {
     componentInstance = fixture.componentInstance;
   });
 
-  it('check the input value change which should change the form control', () => {
+  it('checking the whole dynamic updation of validations for a form control', () => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      const usernameElement: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#username');
-      usernameElement.value = 'sai@gmail.com';
-      usernameElement.dispatchEvent(new Event('input'));
-      expect(componentInstance.username.value).toEqual('sai@gmail.com');
-      const button: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('#buttonID');
-      button.click();
-      expect(componentInstance.username.value).toEqual('dynamic value');
+      const inputElement: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#username');
+      inputElement.value = '';
+      inputElement.dispatchEvent(new Event('input'));
 
+      const errorElement: HTMLDivElement = fixture.debugElement.nativeElement.querySelector('#errorHandler');
+      expect(errorElement).toBeNull();
+
+      expect(componentInstance.username.errors).toBeNull();
+
+      const buttonId: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('#buttonId');
+      buttonId.click();
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        const updatedUsername: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#username');
-        expect(updatedUsername.value).toEqual('dynamic value');
+        const errorElementUpdated: HTMLDivElement = fixture.debugElement.nativeElement.querySelector('#errorHandler');
+        expect(errorElementUpdated).not.toBeNull();
+        expect(errorElementUpdated.children.length).toEqual(1);
+        expect(errorElementUpdated.children[0].innerHTML).toEqual('username is required');
       })
     })
   })
-
 });
