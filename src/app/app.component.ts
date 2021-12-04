@@ -7,10 +7,10 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
- username: FormControl = new FormControl('');
+  username: FormControl = new FormControl('', [Validators.required]);
 
- changeValidations() {
-   this.username.setValidators([Validators.required]);
-   this.username.updateValueAndValidity();
- }
+  removeValidations() {
+    this.username.clearValidators();
+    this.username.updateValueAndValidity();
+  }
 }
