@@ -1,6 +1,6 @@
-<input placeholder="username" [formControl]="username">
+<input placeholder="username" [formControl]="username" id="usernameId">
 
-<div *ngIf="username.invalid && (username.touched || username.dirty)">
+<div *ngIf="username.invalid && (username.touched || username.dirty)" id="usernameErrors">
     <p *ngIf="username?.errors?.required">Username is required</p>
 </div>
-<button (click)="removeValidations()">Remove validations</button>
+<button (click)="removeValidations()" id="removeButton">Remove validations</button>
