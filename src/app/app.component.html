@@ -1,6 +1,5 @@
-<input placeholder="username" [formControl]="username" id="usernameId">
+<input type="number" placeholder="enter meters value" [formControl]="metersControl">
 
-<div *ngIf="username.invalid && (username.touched || username.dirty)" id="usernameErrors">
-    <p *ngIf="username?.errors?.required">Username is required</p>
+<div *ngIf="metersControl.value">
+    {{metersControl.value}} Meters into {{centimeters}} centimeters
 </div>
-<button (click)="removeValidations()" id="removeButton">Remove validations</button>

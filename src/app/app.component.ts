@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Form, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +7,17 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  username: FormControl = new FormControl('', [Validators.required]);
+  metersControl: FormControl = new FormControl(null);
 
-  removeValidations() {
-    this.username.clearValidators();
-    this.username.updateValueAndValidity();
+  centimeters: number = 0;
+
+  constructor() {
+    this.metersControl.valueChanges.subscribe(() => {
+      if(this.metersControl.value) {
+        this.centimeters = this.metersControl.value * 100;
+      } else {
+        this.centimeters = 0;
+      }
+    })
   }
 }
