@@ -1,5 +1,5 @@
-<input type="number" placeholder="enter meters value" [formControl]="metersControl">
+<input type="number" placeholder="enter meters value" [formControl]="metersControl" id="metersId">
 
-<div *ngIf="metersControl.value">
+<div *ngIf="metersControl.value" id="message">
     {{metersControl.value}} Meters into {{centimeters}} centimeters
 </div>
