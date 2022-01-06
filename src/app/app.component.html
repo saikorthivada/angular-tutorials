@@ -1,5 +1,8 @@
-<input type="number" placeholder="enter meters value" [formControl]="metersControl" id="metersId">
+<input placeholder="enter a email" type="text" [formControl]="textFormControl"/>
 
-<div *ngIf="metersControl.value" id="message">
-    {{metersControl.value}} Meters into {{centimeters}} centimeters
+<div *ngIf="textFormControl.invalid && (textFormControl.touched || textFormControl.dirty)">
+    <span *ngIf="textFormControl.errors?.required">This field is required</span>
+</div>
+<div>
+    <button (click)="submit()">Submit</button>
 </div>
