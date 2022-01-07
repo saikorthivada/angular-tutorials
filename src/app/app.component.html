@@ -1,8 +1,8 @@
-<input placeholder="enter a email" type="text" [formControl]="textFormControl"/>
+<input placeholder="enter a email" type="text" [formControl]="textFormControl" id="someInputId"/>
 
-<div *ngIf="textFormControl.invalid && (textFormControl.touched || textFormControl.dirty)">
+<div *ngIf="textFormControl.invalid && (textFormControl.touched || textFormControl.dirty)" id="errorMessages">
     <span *ngIf="textFormControl.errors?.required">This field is required</span>
 </div>
 <div>
-    <button (click)="submit()">Submit</button>
+    <button (click)="submit()" id="btn">Submit</button>
 </div>
