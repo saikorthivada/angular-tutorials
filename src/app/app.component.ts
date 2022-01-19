@@ -7,11 +7,19 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  email: FormControl = new FormControl('', [Validators.required]);
+  password: FormControl = new FormControl('', [Validators.required]);
 
-  textFormControl: FormControl = new FormControl('', [Validators.required]);
-  submit() {
-    if(this.textFormControl.invalid) {
-      this.textFormControl.markAsTouched();
+  login() {
+    console.log(this.email.value);
+    console.log(this.password.value);
+    if(this.email.valid && this.password.valid) {
+      const payload = {
+        email: this.email.value,
+        password: this.password.value
+      };
+      console.log(payload);
     }
+   
   }
 }
