@@ -1,5 +1,9 @@
-<input placeholder="username" [formControl]="email"/>
-
-<input placeholder="password" [formControl]="password"/>
-
-<button type="button" (click)="login()">Login</button>
+<form [formGroup]="loginFormGroup">
+    <input placeholder="enter username" formControlName="email">
+    <br>
+    <br>
+    <input placeholder="enter password" formControlName="passwordReset">
+    <br>
+    <br>
+    <button type="button" (click)="login()">Login</button>
+</form>

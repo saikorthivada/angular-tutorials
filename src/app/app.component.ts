@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +7,15 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  email: FormControl = new FormControl('', [Validators.required]);
-  password: FormControl = new FormControl('', [Validators.required]);
+  loginFormGroup: FormGroup;
+  constructor() {
+    this.loginFormGroup = new FormGroup({
+      email: new FormControl(''),
+      passwordReset: new FormControl('')
+    })
+  }
 
   login() {
-    console.log(this.email.value);
-    console.log(this.password.value);
-    if(this.email.valid && this.password.valid) {
-      const payload = {
-        email: this.email.value,
-        password: this.password.value
-      };
-      console.log(payload);
-    }
-   
+    console.log(this.loginFormGroup.value);
   }
 }
