@@ -1,9 +1,5 @@
 <form [formGroup]="loginFormGroup">
-    <input placeholder="enter username" formControlName="email" id="email">
-    <br>
-    <br>
-    <input placeholder="enter password" formControlName="passwordReset" id="password">
-    <br>
-    <br>
-    <button type="button" (click)="login()">Login</button>
+    <input placeholder="enter username" formControlName="username"/>
 </form>
+
+<p>{{loginFormGroup.get('username')?.value}}</p>
