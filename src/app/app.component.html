@@ -1,5 +1,5 @@
 <form [formGroup]="loginFormGroup">
-    <input placeholder="enter username" formControlName="username"/>
+    <input placeholder="enter username" formControlName="username" id="username"/>
 </form>
 
-<p>{{loginFormGroup.get('username')?.value}}</p>
+<p id="usernameValue">{{loginFormGroup.get('username')?.value}}</p>

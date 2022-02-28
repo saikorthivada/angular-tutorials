@@ -1,4 +1,4 @@
-import {  ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
@@ -20,24 +20,17 @@ describe('AppComponent', () => {
     componentInstance = fixture.componentInstance;
   });
 
-  it('check the form controls inside a form group', () => {
+  it('Test accessing the form control from form group', () => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      const email: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#email');
-      const password: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#password');
-
-      email.value = 'saikumar',
-      password.value = '123456',
-
-      email.dispatchEvent(new Event('input'));
-      password.dispatchEvent(new Event('input'));
-
+      const usernameElement: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#username');
+      usernameElement.value = 'Sai kumar';
+      usernameElement.dispatchEvent(new Event('input'));
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        expect(componentInstance.loginFormGroup.value).toEqual({
-          email: 'saikumar',
-          passwordReset: '123456'
-        })
+        const usernameValue: HTMLParagraphElement = fixture.debugElement.nativeElement.querySelector('#usernameValue');
+        expect(usernameValue.innerHTML).toEqual('Sai kumar');
+        expect(usernameValue.innerHTML).toEqual(componentInstance.loginFormGroup.get('username')?.value);
       })
     })
   })
