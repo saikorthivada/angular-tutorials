@@ -1,5 +1,15 @@
-<form [formGroup]="loginFormGroup">
-    <input placeholder="enter username" formControlName="username" id="username"/>
-</form>
+<div>
+    <button (click)="checkPermissions()">Check the webcam permissions</button>
+    <p *ngIf="status">Status here: {{status}}</p>
+</div>
+<div *ngIf="stream">
+     <!-- web cam image will be shown here -->
+     <webcam [trigger]="$trigger" (imageCapture)="snapshot($event)" [imageQuality]="1"></webcam>
+     <button (click)="captureImage()" >{{btnLabel}}</button>
+</div>
 
-<p id="usernameValue">{{loginFormGroup.get('username')?.value}}</p>
+<!-- Preview section -->
+<div *ngIf="previewImage">
+    <img [src]="previewImage" height="250" width="250">
+    <button (click)="proceed()">Proceed</button>
+</div>
