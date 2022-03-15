@@ -1,9 +1,9 @@
 <form [formGroup]="resetFornGroup">
-    <input placeholder="username" formControlName="username"/>
+    <input placeholder="username" formControlName="username" id="username"/>
     <br>
     <br>
-    <input placeholder="password" formControlName="password"/>
+    <input placeholder="password" formControlName="password" id="password"/>
     <br>
     <br>
-    <button (click)="resetForm()">Reset</button>
+    <button (click)="resetForm()" id="resetBtn">Reset</button>
 </form>
