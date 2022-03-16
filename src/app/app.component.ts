@@ -10,7 +10,7 @@ export class AppComponent {
 
   defaultFormValues = {
     username: 'sai@gmail.com',
-    password: 'passwordupdate'
+    address: 'Hyderabad'
   }
   constructor() {
     this.resetFornGroup = new FormGroup({
@@ -20,6 +20,6 @@ export class AppComponent {
   }
 
   resetForm() {
-    this.resetFornGroup.setValue(this.defaultFormValues);
+    this.resetFornGroup.patchValue(this.defaultFormValues);
   }
 }
