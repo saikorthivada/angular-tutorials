@@ -4,7 +4,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-
   let fixture: ComponentFixture<AppComponent>;
   let componentInstance: AppComponent;
   beforeEach(async () => {
@@ -21,29 +20,28 @@ describe('AppComponent', () => {
     componentInstance = fixture.componentInstance;
   });
 
-  it("check setValue", () => {
+  it("Patch value check", () => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       const usernameElement: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#username');
-      usernameElement.value = 'sample@gmail.com';
-      usernameElement.dispatchEvent(new Event('input'));
+      usernameElement.value = 'sai123';
+      usernameElement.dispatchEvent(new Event("input"));
 
       const passwordElement: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#password');
-      passwordElement.value = 'samplePassword';
-      passwordElement.dispatchEvent(new Event('input'));
+      passwordElement.value = '1234';
+      passwordElement.dispatchEvent(new Event("input"));
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        expect(componentInstance.resetFornGroup.get('username')?.value).toEqual('sample@gmail.com');
-        expect(componentInstance.resetFornGroup.get('password')?.value).toEqual('samplePassword');
         const mockFunction = spyOn(componentInstance, 'resetForm').and.callThrough();
-        const btnElement: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('#resetBtn');
+        const btnElement: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('#resetbtn');
         btnElement.click();
         expect(mockFunction).toHaveBeenCalledTimes(1);
         expect(componentInstance.resetFornGroup.get('username')?.value).toEqual(componentInstance.defaultFormValues.username);
-        expect(componentInstance.resetFornGroup.get('password')?.value).toEqual(componentInstance.defaultFormValues.password);
+        expect(componentInstance.resetFornGroup.get('password')?.value).toEqual('1234');
 
       })
     })
   })
+
 });
