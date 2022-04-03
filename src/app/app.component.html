@@ -1,9 +1,4 @@
-<form [formGroup]="resetFornGroup">
-    <input placeholder="username" formControlName="username" id="username"/>
-    <br>
-    <br>
-    <input placeholder="password" formControlName="password" id="password"/>
-    <br>
-    <br>
-    <button (click)="resetForm()" id="resetbtn">Reset</button>
-</form>
+<div *ngFor="let control of cities.controls;let i = index;">
+    <input placeholder="{{i}} control" [formControl]="getFormControl(i)"/>
+</div>
+<button (click)="showArrayValues()">Get array values</button>

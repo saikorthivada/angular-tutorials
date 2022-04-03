@@ -1,25 +1,23 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  resetFornGroup: FormGroup;
 
-  defaultFormValues = {
-    username: 'sai@gmail.com',
-    address: 'Hyderabad'
-  }
-  constructor() {
-    this.resetFornGroup = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl('')
-    })
+  cities: FormArray;
+
+  constructor(){
+    this.cities = new FormArray([new FormControl(''), new FormControl('')]);
   }
 
-  resetForm() {
-    this.resetFornGroup.patchValue(this.defaultFormValues);
+  getFormControl(index: number): FormControl{
+    return this.cities.controls[index] as FormControl;
+  }
+
+  showArrayValues(): void {
+    console.log(this.cities.value);
   }
 }
