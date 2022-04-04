@@ -1,4 +1,4 @@
 <div *ngFor="let control of cities.controls;let i = index;">
-    <input placeholder="{{i}} control" [formControl]="getFormControl(i)"/>
+    <input placeholder="{{i}} control" [formControl]="getFormControl(i)" id="control_{{i}}"/>
 </div>
 <button (click)="showArrayValues()">Get array values</button>

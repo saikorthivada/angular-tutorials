@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
-  let componentInstance: AppComponent;
+  let instance: AppComponent;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -17,29 +17,27 @@ describe('AppComponent', () => {
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
-    componentInstance = fixture.componentInstance;
+    instance = fixture.componentInstance;
   });
 
-  it("Patch value check", () => {
+  it('Test form arrays with form controls', () => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      const usernameElement: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#username');
-      usernameElement.value = 'sai123';
-      usernameElement.dispatchEvent(new Event("input"));
+      const control1: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#control_0');
+      const control2: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#control_1');
 
-      const passwordElement: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#password');
-      passwordElement.value = '1234';
-      passwordElement.dispatchEvent(new Event("input"));
+      control1.value = 'Sample 1';
+      control2.value = 'Sample 2';
+
+      control1.dispatchEvent(new Event('input'));
+      control2.dispatchEvent(new Event('input'));
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        const mockFunction = spyOn(componentInstance, 'resetForm').and.callThrough();
-        const btnElement: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('#resetbtn');
-        btnElement.click();
-        expect(mockFunction).toHaveBeenCalledTimes(1);
-        expect(componentInstance.resetFornGroup.get('username')?.value).toEqual(componentInstance.defaultFormValues.username);
-        expect(componentInstance.resetFornGroup.get('password')?.value).toEqual('1234');
-
+        const cititesFormArrayValues = instance.cities.value;
+        expect(cititesFormArrayValues[0]).toEqual('Sample 1');
+        expect(cititesFormArrayValues[1]).toEqual('Sample 2');
+        expect(cititesFormArrayValues).toEqual(['Sample 1', 'Sample 2']);
       })
     })
   })
