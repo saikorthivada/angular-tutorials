@@ -1,4 +1,8 @@
-<div *ngFor="let control of cities.controls;let i = index;">
+<div *ngFor="let control of cities.controls;let i = index;" id="formArrayParent">
     <input placeholder="{{i}} control" [formControl]="getFormControl(i)" id="control_{{i}}"/>
 </div>
 <button (click)="showArrayValues()">Get array values</button>
+
+<br>
+<br>
+<button (click)="addFormControl()" id="addBtn">Add new form control</button>

@@ -42,4 +42,20 @@ describe('AppComponent', () => {
     })
   })
 
+
+  it('Form array push event', () => {
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      const spyOnBtn = spyOn(instance, 'addFormControl').and.callThrough();
+      const btn: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('#addBtn');
+
+      btn.click();
+      expect(spyOnBtn).toHaveBeenCalledTimes(1);
+      expect(instance.cities.controls.length).toEqual(3);
+
+      btn.click();
+      expect(spyOnBtn).toHaveBeenCalledTimes(2);
+      expect(instance.cities.controls.length).toEqual(4);
+    })
+  })
 });

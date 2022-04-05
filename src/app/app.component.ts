@@ -20,4 +20,8 @@ export class AppComponent {
   showArrayValues(): void {
     console.log(this.cities.value);
   }
+
+  addFormControl(): void {
+    this.cities.push(new FormControl(''));
+  }
 }
