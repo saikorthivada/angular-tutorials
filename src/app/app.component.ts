@@ -9,8 +9,14 @@ export class AppComponent {
 
   cities: FormArray;
 
+  sampleData:Array<any> = [];
+
   constructor(){
     this.cities = new FormArray([new FormControl(''), new FormControl('')]);
+    this.cities.valueChanges.subscribe((res) => {
+      console.log(res);
+      this.sampleData = res;
+    })
   }
 
   getFormControl(index: number): FormControl{
@@ -23,5 +29,11 @@ export class AppComponent {
 
   addFormControl(): void {
     this.cities.push(new FormControl(''));
+  }
+
+  removeFormControl(index: number): void {
+    this.cities.removeAt(index, {
+      emitEvent: false
+    });
   }
 }

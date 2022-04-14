@@ -1,5 +1,6 @@
 <div *ngFor="let control of cities.controls;let i = index;" id="formArrayParent">
     <input placeholder="{{i}} control" [formControl]="getFormControl(i)" id="control_{{i}}"/>
+    <button (click)="removeFormControl(i)">Delete</button>
 </div>
 <button (click)="showArrayValues()">Get array values</button>
 
