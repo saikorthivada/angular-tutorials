@@ -14,7 +14,6 @@ export class AppComponent {
   constructor(){
     this.cities = new FormArray([new FormControl(''), new FormControl('')]);
     this.cities.valueChanges.subscribe((res) => {
-      console.log(res);
       this.sampleData = res;
     })
   }
@@ -33,7 +32,7 @@ export class AppComponent {
 
   removeFormControl(index: number): void {
     this.cities.removeAt(index, {
-      emitEvent: false
+      emitEvent: true
     });
   }
 }

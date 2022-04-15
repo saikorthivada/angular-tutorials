@@ -58,4 +58,17 @@ describe('AppComponent', () => {
       expect(instance.cities.controls.length).toEqual(4);
     })
   })
+
+  it('Form array remove method or event', () => {
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      const deleteSpyOn= spyOn(instance, 'removeFormControl').and.callThrough();
+      expect(instance.sampleData.length).toEqual(0);
+      const deleteBtn = fixture.debugElement.nativeElement.querySelector('#dltBtn_1');
+      deleteBtn.click();
+      expect(deleteSpyOn).toHaveBeenCalledTimes(1);
+      expect(instance.cities.length).toEqual(1);
+      expect(instance.sampleData.length).toEqual(1);
+    })
+  })
 });
