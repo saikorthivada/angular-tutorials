@@ -1,38 +1,57 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  registerAddress: FormGroup;
 
-  cities: FormArray;
-
-  sampleData:Array<any> = [];
-
-  constructor(){
-    this.cities = new FormArray([new FormControl(''), new FormControl('')]);
-    this.cities.valueChanges.subscribe((res) => {
-      this.sampleData = res;
+  // obj = {
+  //   name: '',
+  //   email: '',
+  //   addresses: [
+  //     {
+  //       cityName: '',
+  //       stateName: '',
+  //       streetName: '',
+  //       landmark: ''
+  //     }
+  //   ]
+  // }
+  constructor() {
+    this.registerAddress = new FormGroup({
+      name: new FormControl(''),
+      email: new FormControl(''),
+      addresses: new FormArray([])
     })
   }
 
-  getFormControl(index: number): FormControl{
-    return this.cities.controls[index] as FormControl;
+  
+  public get addressesAsFormArray() : FormArray {
+    return this.registerAddress.get('addresses') as FormArray;
   }
 
-  showArrayValues(): void {
-    console.log(this.cities.value);
+  submit() {
+    console.log(this.registerAddress.value);
   }
 
-  addFormControl(): void {
-    this.cities.push(new FormControl(''));
+  addAddress() {
+    this.addressesAsFormArray.push(this.getAddressForGroup());
   }
 
-  removeFormControl(index: number): void {
-    this.cities.removeAt(index, {
-      emitEvent: true
-    });
+  getAddressForGroup(): FormGroup {
+    return new FormGroup({
+      id: new FormControl(this.addressesAsFormArray.controls.length + 1),
+      cityName: new FormControl(''),
+      stateName: new FormControl(''),
+      streetName: new FormControl(''),
+      landmark: new FormControl('')
+    })
+  }
+  
+  removeAddress(index: number): void {
+    this.addressesAsFormArray.removeAt(index);
   }
 }

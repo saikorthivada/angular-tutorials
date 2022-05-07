@@ -1,9 +1,42 @@
-<div *ngFor="let control of cities.controls;let i = index;" id="formArrayParent">
-    <input placeholder="{{i}} control" [formControl]="getFormControl(i)" id="control_{{i}}"/>
-    <button (click)="removeFormControl(i)" id="dltBtn_{{i}}">Delete</button>
-</div>
-<button (click)="showArrayValues()">Get array values</button>
+<div style="display: flex;justify-content: center;margin-top: 20px;">
+    <form [formGroup]="registerAddress" (ngSubmit)="submit()">
+        <div class="m-t-10">
+            <input placeholder="Enter Name" name="name" formControlName="name" />
+        </div>
+        <div class="m-t-10">
+            <input placeholder="Enter Email" name="Email" formControlName="email" />
+        </div>
+        <div class="m-t-10" formArrayName="addresses">
+            <div style="display: flex;justify-content: end;">
+                <button type="button" (click)="addAddress()">Add Address</button>
+            </div>
+            <ng-container *ngIf="addressesAsFormArray.controls.length <= 0">
+                <p style="color: orange">No Addresses found</p>
+            </ng-container>
+            <ng-container *ngFor="let control of addressesAsFormArray.controls;let i = index">
+                <p>Address Details - {{control.get('id')?.value}}</p>
+                <div style="display: flex;justify-content: end;">
+                    <button type="button" (click)="removeAddress(i)">Remove Address - {{control.get('id')?.value}}</button>
+                </div>
+                <div [formGroupName]="i">
+                    <div class="m-t-10">
+                        <input placeholder="Enter City Name" name="cityname" formControlName="cityName" />
+                    </div>
+                    <div class="m-t-10">
+                        <input placeholder="Enter State Name" name="stateName" formControlName="stateName" />
+                    </div>
+                    <div class="m-t-10">
+                        <input placeholder="Enter Street Name" name="streetName" formControlName="streetName" />
+                    </div>
+                    <div class="m-t-10">
+                        <input placeholder="Enter Landmark" name="Landmark" formControlName="landmark" />
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div style="display: flex;justify-content: end;" class="m-t-10">
+            <button type="submit">Submit</button>
+        </div>
 
-<br>
-<br>
-<button (click)="addFormControl()" id="addBtn">Add new form control</button>
+    </form>
+</div>
