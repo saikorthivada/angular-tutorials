@@ -8,24 +8,37 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 export class AppComponent {
   registerAddress: FormGroup;
 
-  // obj = {
-  //   name: '',
-  //   email: '',
-  //   addresses: [
-  //     {
-  //       cityName: '',
-  //       stateName: '',
-  //       streetName: '',
-  //       landmark: ''
-  //     }
-  //   ]
-  // }
+  obj = {
+    name: 'sai kumar',
+    email: 'sai@gmail.com',
+    addresses: [
+      {
+        id: 1,
+        cityName: 'city1',
+        stateName: 'state1',
+        streetName: 'street1',
+        landmark: 'landmark'
+      },
+      {
+        id: 2,
+        cityName: 'city2',
+        stateName: 'state2',
+        streetName: 'street2',
+        landmark: ''
+      }
+    ]
+  }
   constructor() {
     this.registerAddress = new FormGroup({
       name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
       email: new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])),
       addresses: new FormArray([])
+    });
+
+    this.obj.addresses.forEach(() => {
+      this.addAddress();
     })
+    this.registerAddress.patchValue(this.obj);
   }
 
   
