@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,8 +22,8 @@ export class AppComponent {
   // }
   constructor() {
     this.registerAddress = new FormGroup({
-      name: new FormControl(''),
-      email: new FormControl(''),
+      name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
+      email: new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])),
       addresses: new FormArray([])
     })
   }
@@ -44,14 +44,25 @@ export class AppComponent {
   getAddressForGroup(): FormGroup {
     return new FormGroup({
       id: new FormControl(this.addressesAsFormArray.controls.length + 1),
-      cityName: new FormControl(''),
-      stateName: new FormControl(''),
-      streetName: new FormControl(''),
+      cityName: new FormControl('', Validators.compose([Validators.required])),
+      stateName: new FormControl('', Validators.compose([Validators.required])),
+      streetName: new FormControl('', Validators.compose([Validators.required])),
       landmark: new FormControl('')
     })
   }
   
   removeAddress(index: number): void {
     this.addressesAsFormArray.removeAt(index);
+  }
+
+  isFieldValid(formGroup: any, formControlName: string) {
+    if(formGroup.get(formControlName)?.invalid && (formGroup.get(formControlName)?.touched || formGroup.get(formControlName)?.dirty)) {
+      return true;
+    }
+    return false;
+  }
+
+  getFieldErrorByType(formGroup: any, formControlName: string, type: string) {
+    return formGroup.get(formControlName)?.errors[type];
   }
 }

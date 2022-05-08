@@ -1,3 +1,6 @@
+Email pattern 
+/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
 # AngularTutorials
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
