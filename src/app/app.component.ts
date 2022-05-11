@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -28,11 +28,11 @@ export class AppComponent {
       }
     ]
   }
-  constructor() {
-    this.registerAddress = new FormGroup({
-      name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
-      email: new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])),
-      addresses: new FormArray([])
+  constructor(private formBuilder: FormBuilder) {
+    this.registerAddress = this.formBuilder.group({
+      name: this.formBuilder.control('', Validators.compose([Validators.required, Validators.minLength(5)])),
+      email: this.formBuilder.control('', Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])),
+      addresses: this.formBuilder.array([])
     });
 
     this.obj.addresses.forEach(() => {
@@ -55,12 +55,12 @@ export class AppComponent {
   }
 
   getAddressForGroup(): FormGroup {
-    return new FormGroup({
-      id: new FormControl(this.addressesAsFormArray.controls.length + 1),
-      cityName: new FormControl('', Validators.compose([Validators.required])),
-      stateName: new FormControl('', Validators.compose([Validators.required])),
-      streetName: new FormControl('', Validators.compose([Validators.required])),
-      landmark: new FormControl('')
+    return this.formBuilder.group({
+      id: this.formBuilder.control(this.addressesAsFormArray.controls.length + 1),
+      cityName: this.formBuilder.control('', Validators.compose([Validators.required])),
+      stateName: this.formBuilder.control('', Validators.compose([Validators.required])),
+      streetName: this.formBuilder.control('', Validators.compose([Validators.required])),
+      landmark: this.formBuilder.control('')
     })
   }
   
