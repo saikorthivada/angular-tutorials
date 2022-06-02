@@ -17,7 +17,7 @@
         </div>
         <div class="m-t-10" formArrayName="addresses">
             <div style="display: flex;justify-content: end;">
-                <button type="button" (click)="addAddress()">Add Address</button>
+                <button type="button" (click)="addAddress()" id="addAddressId">Add Address</button>
             </div>
             <ng-container *ngIf="addressesAsFormArray.controls.length <= 0">
                 <p style="color: orange">No Addresses found</p>
@@ -53,7 +53,7 @@
             </ng-container>
         </div>
         <div style="display: flex;justify-content: end;" class="m-t-10">
-            <button type="submit" [disabled]="registerAddress.invalid">Submit</button>
+            <button type="submit" [disabled]="registerAddress.invalid" id="submitID">Submit</button>
         </div>
 
     </form>

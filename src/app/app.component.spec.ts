@@ -32,4 +32,21 @@ describe('AppComponent', () => {
     })
   })
 
+  it('Test: Add address checks', ()=> {
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      const addButton: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('#addAddressId');
+      const addAddressSpy = spyOn(componentInstance, 'addAddress').and.callThrough();
+      addButton.click();
+      expect(addAddressSpy).toHaveBeenCalledTimes(1);
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        const inputElements: HTMLInputElement[] = fixture.debugElement.nativeElement.querySelectorAll('input');
+        expect(inputElements.length).toEqual(14);
+        const buttonSubmit: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('#submitID');
+        expect(buttonSubmit.disabled).toBeTruthy();
+      })
+    })
+  })
+
 });
