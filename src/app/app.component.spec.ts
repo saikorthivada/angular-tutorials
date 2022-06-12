@@ -49,4 +49,20 @@ describe('AppComponent', () => {
     })
   })
 
+  it("Test: Remove address feature", () => {
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      const removelElement: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('#remove_address_1');
+      const removeAddressSpy = spyOn(componentInstance, 'removeAddress').and.callThrough();
+      removelElement.click();
+      expect(removeAddressSpy).toHaveBeenCalledTimes(1);
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(componentInstance.addressesAsFormArray.length).toEqual(1);
+        const objAddresses = componentInstance.obj.addresses.splice(1, 1);
+        expect(JSON.stringify(componentInstance.addressesAsFormArray.value)).toEqual(JSON.stringify(componentInstance.obj.addresses));
+      })
+    })
+  })
+
 });

@@ -25,7 +25,7 @@
             <ng-container *ngFor="let control of addressesAsFormArray.controls;let i = index">
                 <p>Address Details - {{control.get('id')?.value}}</p>
                 <div style="display: flex;justify-content: end;">
-                    <button type="button" (click)="removeAddress(i)">Remove Address - {{control.get('id')?.value}}</button>
+                    <button type="button" (click)="removeAddress(i)" id="remove_address_{{i}}">Remove Address - {{control.get('id')?.value}}</button>
                 </div>
                 <div [formGroupName]="i">
                     <div class="m-t-10">
