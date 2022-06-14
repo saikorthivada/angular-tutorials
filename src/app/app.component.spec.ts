@@ -65,4 +65,36 @@ describe('AppComponent', () => {
     })
   })
 
+  it('Validate email not found', () => {
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      const emailElement: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#emailID');
+      emailElement.value = '';
+      emailElement.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        const requiredEmailElement: HTMLParagraphElement = fixture.debugElement.nativeElement.querySelector('#emailRequired');
+        expect(requiredEmailElement).not.toBeNull();
+        expect(requiredEmailElement.innerHTML).toEqual('This is required');
+        expect(componentInstance.registerAddress.get('email')?.value).toEqual('');
+        expect(componentInstance.registerAddress.get('email')?.errors).not.toBeNull();
+        expect(componentInstance.registerAddress.get('email')?.errors?.required).toBeTruthy();
+      })
+    })
+  })
+
+  it('test form array addresses', () => {
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      componentInstance.addressesAsFormArray.get('0')?.get('cityName')?.setValue('');
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(componentInstance.registerAddress.invalid).toBeTruthy();
+        expect(componentInstance.addressesAsFormArray.get('0')?.get('cityName')?.errors).not.toBeNull();
+        expect(componentInstance.addressesAsFormArray.get('0')?.get('cityName')?.errors?.required).toBeTruthy();
+
+      })
+    })
+  })
+
 });

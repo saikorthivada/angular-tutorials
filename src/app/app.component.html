@@ -9,9 +9,9 @@
             </div>
         </div>
         <div class="m-t-10">
-            <input placeholder="Enter Email" name="Email" formControlName="email" />
+            <input placeholder="Enter Email" name="Email" formControlName="email" id="emailID"/>
             <div *ngIf="isFieldValid(registerAddress, 'email')">
-                <p class="error" *ngIf="getFieldErrorByType(registerAddress, 'email', 'required')">This is required</p>
+                <p class="error" *ngIf="getFieldErrorByType(registerAddress, 'email', 'required')" id="emailRequired">This is required</p>
                 <p class="error" *ngIf="getFieldErrorByType(registerAddress, 'email', 'pattern')">Please enter valid email</p>
             </div>
         </div>
