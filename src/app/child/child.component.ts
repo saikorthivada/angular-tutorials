@@ -8,7 +8,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 export class ChildComponent implements OnInit, OnChanges {
 
   @Input()
-  personInfo: any;
+  items: any[] = [];
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges): void {

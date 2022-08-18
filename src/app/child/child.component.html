@@ -1,2 +1,3 @@
-<p>Username - {{personInfo.username}}</p>
-<p>Username - {{personInfo.age}}</p>
+<div *ngFor="let item of items">
+    <p>{{item.name}} - {{item.age}}</p>
+</div>

@@ -6,19 +6,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  parentItems = [
+    {
+      name: 'sai',
+      age: 20
+    },
+    {
+      name: 'skk',
+      age: 22
+    },
+  ];
 
-  personObj = {
-    username: 'sai kumar',
-    age: 20
-  }
-
-  incrementAge() {
-    // this.personObj.age = this.personObj.age + 1;
-    // this.personObj = {
-    //   ...this.personObj,
-    //   age: this.personObj.age + 1
-    // };
-
-    this.personObj = Object.assign({},this.personObj,{age: this.personObj.age + 1});
+  pushObj() {
+    this.parentItems = [...this.parentItems, {
+      age: 23,
+      name: 'updated'
+    }];
   }
 }
