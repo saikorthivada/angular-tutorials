@@ -1,3 +1,6 @@
 <h1>Hai im using angular 14</h1>
 
-<app-child [title]="parentTitle"></app-child>
+<app-child [title]="parentTitle" [metersValue]="metersModel"></app-child>
+<input type="number" placeholder="Enter value in meters" [(ngModel)]="metersModel"/>
+
+<button (click)="changeTitle()">Change title</button>

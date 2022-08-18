@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  parentTitle: string = 'Parent data updated';
+  parentTitle: string = 'Parent data';
+  metersModel: number = 0;
+
+  changeTitle() {
+    this.parentTitle = 'Sample update parent';
+  }
 }
