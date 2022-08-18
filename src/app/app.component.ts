@@ -6,10 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  parentTitle: string = 'Parent data';
-  metersModel: number = 0;
 
-  changeTitle() {
-    this.parentTitle = 'Sample update parent';
+  personObj = {
+    username: 'sai kumar',
+    age: 20
+  }
+
+  incrementAge() {
+    // this.personObj.age = this.personObj.age + 1;
+    // this.personObj = {
+    //   ...this.personObj,
+    //   age: this.personObj.age + 1
+    // };
+
+    this.personObj = Object.assign({},this.personObj,{age: this.personObj.age + 1});
   }
 }

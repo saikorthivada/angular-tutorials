@@ -8,19 +8,11 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 export class ChildComponent implements OnInit, OnChanges {
 
   @Input()
-  title: string = 'Child component';
-
-  @Input()
-  metersValue: number = 0;
+  personInfo: any;
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('this is ng on changes', changes);
-    if(changes.metersValue && changes.metersValue.currentValue) {
-      this.metersValue = changes.metersValue.currentValue * 100;
-    } else {
-      this.metersValue = 0;
-    }
+    console.log('Updates', changes);
   }
 
   ngOnInit(): void {
