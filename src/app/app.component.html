@@ -1,3 +1,3 @@
-<h1>Hai im using angular 14</h1>
+<h1 id="heading_parent">Output Decorator - {{outPutData}}</h1>
 
-<app-child [title]="parentTitle"></app-child>
+<app-child [title]="parentTitle" (sendDataEmitter)="receiveData($event)"></app-child>

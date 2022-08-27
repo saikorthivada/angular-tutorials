@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   parentTitle: string = 'Parent data updated';
+  outPutData = '';
+  receiveData(childData: any) {
+    console.log(childData);
+    this.outPutData = childData.title;
+  }
 }
