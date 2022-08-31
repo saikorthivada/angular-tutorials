@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
+  url:SafeUrl = ''
+  onCodeChange(url: SafeUrl) {
+    this.url = url;
+  }
 }
