@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ViewChildren } from '@angular/core';
 import { ChildComponent } from './child/child.component';
 
 @Component({
@@ -7,13 +7,23 @@ import { ChildComponent } from './child/child.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  @ViewChild('childRef') childRef!: ChildComponent;
+  @ViewChildren('childRef') childRefs!: ChildComponent[];
 
   changeChildTitle() {
-    this.childRef.title = 'Updated from parent component';
+    let counter = 0;
+    for (const iterator of this.childRefs) {
+      counter = counter +1;
+      iterator.title = `${iterator.title} ${counter}`;
+    }
   }
 
   accessChildMethod() {
-    this.childRef.changeTitle('Im able to access the child method');
+    let counter = 0;
+    for (const childComponent of this.childRefs) {
+      counter = counter + 1;
+      if(counter %2 === 0) {
+        childComponent.changeTitle(`${childComponent.title} method ${counter}`);
+      }
+    }
   }
 }
