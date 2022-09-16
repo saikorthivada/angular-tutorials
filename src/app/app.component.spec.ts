@@ -20,35 +20,34 @@ describe('AppComponent', () => {
     componentInstance = fixture.componentInstance;
   });
 
-  it('Title check on child component varaible change', waitForAsync(() =>{
-    fixture.detectChanges();
-    fixture.whenStable().then((() => {
-      const titleBtn: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('#title_variable_id');
-      titleBtn.click();
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        const paraelements: HTMLParagraphElement[] = fixture.debugElement.nativeElement.querySelectorAll('#title_id');
-        expect(paraelements.length).toEqual(3);
-        expect(paraelements[0].innerHTML).toEqual(`title - Child 1`);
-        expect(paraelements[1].innerHTML).toEqual(`title - Child 2`);
-        expect(paraelements[2].innerHTML).toEqual(`title - Child 3`);
-
-      })
-    }))
-  }))
-
-  it('change title method check from parent using view children', waitForAsync(() => {
+  it('Accessing child variable i.e.. Title on button click', waitForAsync(() => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      const btnElement: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('#access_child_methods');
-      btnElement.click();
+      const button: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('#child_title_access');
+      button.click();
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        const paraelements: HTMLParagraphElement[] = fixture.debugElement.nativeElement.querySelectorAll('#title_id');
-        expect(paraelements.length).toEqual(3);
-        expect(paraelements[0].innerHTML).toEqual(`title - Child`);
-        expect(paraelements[1].innerHTML).toEqual(`title - Child method 2`);
-        expect(paraelements[2].innerHTML).toEqual(`title - Child`);
+        const paras: HTMLParagraphElement[] = fixture.debugElement.nativeElement.querySelectorAll('#title_id');
+        expect(paras.length).toEqual(3);
+        expect(paras[0].innerHTML).toEqual(`title - Child 1`);
+        expect(paras[1].innerHTML).toEqual(`title - Child 2`);
+        expect(paras[2].innerHTML).toEqual(`title - Child 3`);
+      })
+    })
+  }))
+
+  it('Accessing child para using a method of child', waitForAsync(() => {
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      const btn: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('#method_access');
+      btn.click();
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        const paras: HTMLParagraphElement[] = fixture.debugElement.nativeElement.querySelectorAll('#title_id');
+        expect(paras.length).toEqual(3);
+        expect(paras[0].innerHTML).toEqual(`title - Child`);
+        expect(paras[1].innerHTML).toEqual(`title - Child method 2`);
+        expect(paras[2].innerHTML).toEqual(`title - Child`);
       })
     })
   }))
