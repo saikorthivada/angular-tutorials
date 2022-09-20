@@ -1,4 +1,12 @@
 <p>child works!</p>
-<div [innerHTML]="htmlContentChild"></div>
+<!-- <div [innerHTML]="htmlContentChild"></div>
 <p>This is my intermediate content between 2 inner HTML</p>
-<div [innerHTML]="paraContent"></div>
+<div [innerHTML]="paraContent"></div> -->
+
+<div>
+    <ng-content select="#first"></ng-content>
+    <p>This is my intermediate content</p>
+    <ng-content select="p"></ng-content>
+    <p>This is my intermediate content</p>
+    <ng-content select=".heading2"></ng-content>
+</div>

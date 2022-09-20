@@ -1,5 +1,9 @@
 <h1>Hai im using angular 14</h1>
 
-<app-child [htmlContentChild]="htmlContent" [paraContent]="htmlContent2"></app-child>
+<app-child>
+    <h1 id="first">Hai this is a sample HTML content</h1>
+    <h2 class="heading2">Hai this is heading 2</h2>
+    <p>My para {{dynamicContent}}</p>
+</app-child>
 
 <button (click)="updateParaElement()">Update Parent element</button>

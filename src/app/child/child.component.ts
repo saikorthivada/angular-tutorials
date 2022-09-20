@@ -7,12 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ChildComponent implements OnInit {
 
-  @Input()
-  htmlContentChild!: string;
-
-  @Input()
-  paraContent!: string;
-
   constructor() { }
 
   ngOnInit(): void {
