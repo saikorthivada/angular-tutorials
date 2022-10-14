@@ -1,1 +1,13 @@
-<h1>Hai im using angular 14</h1>
+<form [formGroup]="addressForm">
+    <div>
+        <input placeholder="name" formControlName="name"/>
+    </div>
+    <div>
+        <input placeholder="Phone" formControlName="phone"/>
+    </div>
+
+    <app-child [formGroup]="getAddressFormGroupForChild()"></app-child>
+    <div>
+    <button (click)="submit()">Submit</button>
+</div>
+</form>
