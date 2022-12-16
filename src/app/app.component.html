@@ -1,1 +1,10 @@
-<p>Angular V15 launched</p>
+<form [formGroup]="urlFormGroup">
+    <input placeholder="url" formControlName="url"/>
+    <br>
+    <br>
+    <span *ngIf="!urlFormGroup.get('url')?.errors?.['nomatch']" class="green">The value contains https://</span>
+    <div *ngIf="urlFormGroup.get('url')?.invalid && (urlFormGroup.get('url')?.touched || urlFormGroup.get('url')?.dirty)">
+  
+        <span *ngIf="urlFormGroup.get('url')?.errors?.['nomatch']" class="red">The value does not contains https://</span>
+    </div>
+</form>
