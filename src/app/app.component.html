@@ -1,10 +1,11 @@
-<form [formGroup]="urlFormGroup">
-    <input placeholder="url" formControlName="url"/>
+<form [formGroup]="passwordGroup">
+    <input placeholder="password" formControlName="password"/>
     <br>
     <br>
-    <span *ngIf="!urlFormGroup.get('url')?.errors?.['nomatch']" class="green">The value contains https://</span>
-    <div *ngIf="urlFormGroup.get('url')?.invalid && (urlFormGroup.get('url')?.touched || urlFormGroup.get('url')?.dirty)">
-  
-        <span *ngIf="urlFormGroup.get('url')?.errors?.['nomatch']" class="red">The value does not contains https://</span>
-    </div>
+    <input placeholder="confirmPassword" formControlName="confirmPassword"/>
+    <br>
+    <br>
+    <ng-container *ngIf="passwordGroup.invalid && (passwordGroup.touched || passwordGroup.dirty)">
+        <span *ngIf="passwordGroup.errors?.['notEqual']">Password and confirm password should be same</span>
+    </ng-container>
 </form>

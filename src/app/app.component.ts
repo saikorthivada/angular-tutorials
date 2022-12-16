@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 
-const checkURLWithHTTPS = () => {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const value = control.value;
-    const valueSplit = value.split('https:/\//');
-    if(value && valueSplit.length > 0 && valueSplit[0] === 'https://') {
-      return null;
+const checkEquailty = (source: string, target: string) => {
+  return (group: AbstractControl): ValidationErrors | null => {
+    const sourceValue = group.get(source)?.value;
+    const targetValue = group.get(target)?.value;
+    if(sourceValue !== targetValue) {
+      return {
+        notEqual: true
+      }
     }
-    return {
-      nomatch: true
-    }
+    return null;
   }
 }
 
@@ -21,10 +21,13 @@ const checkURLWithHTTPS = () => {
 })
 export class AppComponent {
 
-  urlFormGroup: FormGroup;
+  passwordGroup: FormGroup;
+
   constructor() {
-    this.urlFormGroup = new FormGroup({
-      url: new FormControl('', [checkURLWithHTTPS()])
-    });
+    this.passwordGroup = new FormGroup({
+      password: new FormControl(''),
+      confirmPassword: new FormControl('')
+    }, [checkEquailty('password', 'confirmPassword')])
+  
   }
 }
