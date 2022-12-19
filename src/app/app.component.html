@@ -1,11 +1,21 @@
-<form [formGroup]="passwordGroup">
-    <input placeholder="password" formControlName="password"/>
-    <br>
-    <br>
-    <input placeholder="confirmPassword" formControlName="confirmPassword"/>
-    <br>
-    <br>
-    <ng-container *ngIf="passwordGroup.invalid && (passwordGroup.touched || passwordGroup.dirty)">
-        <span *ngIf="passwordGroup.errors?.['notEqual']">Password and confirm password should be same</span>
-    </ng-container>
+<form [formGroup]="dropDownForm">
+
+    <div>
+        <label>Continents</label>
+        <select formControlName="contintent">
+            <option selected></option>
+            <option *ngFor="let continent of list" [ngValue]="continent.id">{{continent.label}}</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Countries</label>
+        <select formControlName="country">
+            <option selected></option>
+            <option *ngFor="let country of selectedContriesList" [ngValue]="country.id">{{country.label}}</option>
+        </select>
+    </div>
+    <div>
+        <button (click)="submit()">Submit</button>
+    </div>
 </form>
