@@ -1,4 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-tutorials-15';
+
+  profileName = 'Default name';
+
+  profileNameReceiver(name: string) {
+    this.profileName = name;
+    console.log(this.profileName);
+  }
 }
