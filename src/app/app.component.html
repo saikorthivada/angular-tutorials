@@ -1,1 +1,4 @@
-<p>Angular V15 launched</p>
+<p>App component</p>
+
+<app-header [profileName]="profileName"></app-header>
+<app-profile (profileNameEmitter)="profileNameReceiver($event)"></app-profile>
