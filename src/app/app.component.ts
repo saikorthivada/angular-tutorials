@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { SingleTon } from './singleton';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +8,4 @@ import { SingleTon } from './singleton';
 })
 export class AppComponent {
 
-  setData() {
-    console.log('Set data');
-    SingleTon.getInstance().setData('sai');
-  }
 }
