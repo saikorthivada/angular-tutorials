@@ -1,1 +1,6 @@
 <p>Angular V15 launched</p>
+<div>
+    <a [routerLink]="['/register']" routerLinkActive="active">Register</a>
+    <button (click)="login()">Login</button>
+</div>
+<router-outlet></router-outlet>

@@ -16,7 +16,6 @@ export class AppComponent {
     let sampleUserID = 1;
     if(this.userId === sampleUserID) {
       this.router.navigate(['dashboard']);
-      // this.router.navigateByUrl('/dashboard/charts');
     } else {
       alert('User does not exist');
     }
