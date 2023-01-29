@@ -10,10 +10,9 @@ import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
     LoginComponent,
     RegisterComponent,
-    NotfoundComponent
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,6 +20,6 @@ import { NotfoundComponent } from './notfound/notfound.component';
     ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: []
 })
 export class AppModule { }
