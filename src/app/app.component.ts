@@ -8,16 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  userId = 1;
   constructor(private router: Router) {
 
   }
   login() {
-    let sampleUserID = 1;
-    if(this.userId === sampleUserID) {
-      this.router.navigate(['dashboard']);
-    } else {
-      alert('User does not exist');
-    }
+      this.router.navigate(['login1234']);
   }
 }

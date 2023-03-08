@@ -1,31 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/register',
-    pathMatch: 'full'
-  },
-  {
     path: 'login',
-    component: LoginComponent
+    // component: LoginComponent
+    loadComponent: () => import('./login/login.component').then(component => component.LoginComponent)
   },
   {
     path: 'register',
-    component: RegisterComponent
+    // component: RegisterComponent
+    loadComponent: () => import('./register/register.component').then(component => component.RegisterComponent)
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    // component: DashboardComponent
+    loadComponent: () => import('./dashboard/dashboard.component').then(component => component.DashboardComponent)
   },
   {
     path: '**',
-    component: NotfoundComponent
+    // component: NotfoundComponent
+    loadComponent: () => import('./notfound/notfound.component').then(component => component.NotfoundComponent)
   }
 ];
 
