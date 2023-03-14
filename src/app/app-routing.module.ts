@@ -13,19 +13,23 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    // component: LoginComponent
+    loadChildren: () => import('./login/login.module').then(module => module.LoginModule)
   },
   {
     path: 'register',
-    component: RegisterComponent
+    // component: RegisterComponent
+    loadChildren: () => import('./register/register.module').then(module => module.RegisterModule)
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    // component: DashboardComponent
+    loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule)
   },
   {
     path: '**',
-    component: NotfoundComponent
+    // component: NotfoundComponent
+    loadChildren: () => import('./notfound/notfound.module').then(module => module.NotfoundModule)
   }
 ];
 

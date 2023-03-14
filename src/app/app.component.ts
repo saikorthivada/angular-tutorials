@@ -15,7 +15,7 @@ export class AppComponent {
   login() {
     let sampleUserID = 1;
     if(this.userId === sampleUserID) {
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['login', 123]);
     } else {
       alert('User does not exist');
     }
