@@ -1,0 +1,19 @@
+<p>Products page</p>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{product.id}}</td>
+      <td>{{product.name}}</td>
+      <td>
+        <button (click)="navigateToProduct(product.id)">View</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
