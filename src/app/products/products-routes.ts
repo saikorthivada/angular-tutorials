@@ -7,6 +7,10 @@ export const ProductsRoute: Routes = [
   },
   {
     path: ':id',
-    loadChildren: () => import('./product/product-routes').then(m => m.ProductRoutes)
+    loadChildren: () => import('./product/product-routes').then(m => m.ProductRoutes),
+    data: {
+      subchild: 'product',
+      name: 'product'
+    }
   }
 ]

@@ -13,5 +13,6 @@ export class ProductComponent {
   id: any;
   constructor(private activatedRoute: ActivatedRoute) {
     this.id = this.activatedRoute.snapshot.params.id;
+    console.log(this.activatedRoute.snapshot.data);
   }
 }

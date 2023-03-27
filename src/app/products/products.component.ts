@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -26,8 +26,8 @@ export class ProductsComponent {
     }
   ];
 
-  constructor(private router: Router){
-
+  constructor(private router: Router, private activatedRoute: ActivatedRoute){
+    console.log(this.activatedRoute.snapshot.data);
   }
 
   navigateToProduct(id: any) {
