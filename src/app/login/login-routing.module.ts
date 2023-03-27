@@ -4,8 +4,19 @@ import { LoginComponent } from './login.component';
 
 const routes: Routes = [
   {
+    path: '',
+    component: LoginComponent,
+    data: {
+      title: 'login without id'
+    }
+  },
+  {
     path: ':id',
-    component: LoginComponent
+    component: LoginComponent,
+    data: {
+      title: 'Login with id',
+      role: 'user_special'
+    }
   }
 ];
 

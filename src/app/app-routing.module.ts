@@ -14,12 +14,18 @@ const routes: Routes = [
   {
     path: 'login',
     // component: LoginComponent
-    loadChildren: () => import('./login/login.module').then(module => module.LoginModule)
+    loadChildren: () => import('./login/login.module').then(module => module.LoginModule),
+    data: {
+      role: 'admin'
+    }
   },
   {
     path: 'register',
     // component: RegisterComponent
-    loadChildren: () => import('./register/register.module').then(module => module.RegisterModule)
+    loadChildren: () => import('./register/register.module').then(module => module.RegisterModule),
+    data: {
+      role: 'user'
+    }
   },
   {
     path: 'dashboard',
