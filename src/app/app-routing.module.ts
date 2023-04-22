@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { APIResolver } from './api.resolver';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './notfound/notfound.component';
@@ -15,6 +16,9 @@ const routes: Routes = [
     path: 'login',
     // component: LoginComponent
     loadChildren: () => import('./login/login.module').then(module => module.LoginModule),
+    resolve: {
+      role: APIResolver
+    },
     data: {
       role: 'admin'
     }
