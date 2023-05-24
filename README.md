@@ -1,3 +1,41 @@
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+declare var Razorpay: any;
+
+var options = {
+      description: 'Credits towards consultation',
+      image: 'https://i.imgur.com/FApqk3D.jpeg',
+      currency: 'INR', // your 3 letter currency code
+      key: 'rzp_test_ykpIQCXJbWgyQi', // your Key Id from Razorpay dashboard
+      amount: 30000, // Payment amount in smallest denomiation e.g. cents for USD
+      name: 'Sai',
+      prefill: {
+        email: 'sai@gmail.com',
+        contact: '9988998899',
+        name: 'Sai kumar'
+      },
+      theme: {
+        color: '#f37254'
+      },
+      notes: {
+        address: 'Home Address'
+      },
+      modal: {
+        ondismiss:  () => {
+          console.log('dismissed')
+        }
+      }
+    };
+
+    var successCallback = (payment_id: any) => {
+      console.log('payment_id: ' + payment_id);
+    };
+
+    var cancelCallback = (error: any) => {
+      alert(error.description + ' (Error ' + error.code + ')');
+    };
+
+    Razorpay.open(options, successCallback, cancelCallback);
 # AngularTutorials
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
