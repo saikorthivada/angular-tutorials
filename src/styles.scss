@@ -1,1 +1,138 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import './assets/styles/common.css';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+svg {
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1.0, 1.0);
+  transform: translateZ(0);
+}
+
+mat-form-field {
+  width: 100%;
+}
+.login-logo {
+  height: 100px;
+}
+
+.heading-section-title {
+  font-size: 24px;
+  color: #696969;
+}
+
+.mat-drawer-container {
+  background-color: #fff !important;
+  color: #696969 !important;
+}
+
+.eye-icon {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.mat-form-field {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #696969;
+}
+
+.page-title-light {
+  font-size: 22px;
+  font-weight: normal;
+  color: #696969;
+}
+
+.apploadercontainer .mat-dialog-container {
+  border-radius: 20px !important;
+}
+
+.no-data-found {
+  height: auto;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+  border-top: 0;
+  color: #696969;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+/*
+TODO - check if the below can be combined with exisitng css
+*/
+
+.messages-wrap {
+  min-height: 400px;
+}
+
+.mat-card-title label {
+  font-weight: bold;
+}
+
+.mat-card-title .mat-button-toggle-label-content {
+  font-weight: normal;
+}
+
+.matform-error {
+  font-size: 75%;
+  min-height: 16px;
+}
+
+.matform-error.matform-error-position {
+  position: relative;
+  top: -24px;
+}
+
+.float-never .matform-error {
+  font-size: 75%;
+  min-height: 16px;
+}
+
+.float-never .matform-error.matform-error-position {
+  position: relative;
+  top: -14px;
+}
+
+.sub-title {
+  font-size: 1rem;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin: 0;
+  font-weight: bold;
+}
+.separator {
+  border: solid 1px darkgray;
+}
+.w-300px {
+  width: 300px;
+}
+.w-10px{
+  width:10px;
+}
+.w-30px{
+  width:30px;
+}
+.h-70px{
+  height:70px
+}
+
+.hide-display {
+  display: none;
+}
+
+.show-display {
+  display: normal;
+}

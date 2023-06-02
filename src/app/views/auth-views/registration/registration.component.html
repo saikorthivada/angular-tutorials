@@ -1,0 +1,93 @@
+
+<form [formGroup]="registerationForm" #registerationNgForm="ngForm" novalidate (ngSubmit)="onSubmit()" autocomplete="off">
+  <mat-card>
+    <mat-card-content>
+      <div class="row m-b-10">
+        <div class="col-md-6 p-r-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>FirstName</mat-label>
+            <input matInput
+                   name="firstname"
+                   formControlName="firstname"
+                   placeholder="FirstName"
+                   required
+                   autocomplete="off"
+                   trimOnBlur>
+            <mat-error *ngIf="isValidField(registerationForm, 'firstname')">
+              {{ getErrorMessage(registerationForm, validation_messages, 'firstname') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 p-r-12">
+          <mat-form-field class="full-width"  appearance="outline">
+            <mat-label>LastName</mat-label>
+            <input matInput
+                   name="lastname"
+                   formControlName="lastname"
+                   placeholder="LastName"
+                   required
+                   autocomplete="off" trimOnBlur>
+            <mat-error *ngIf="isValidField(registerationForm, 'lastname')">
+              {{ getErrorMessage(registerationForm, validation_messages, 'lastname') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="m-b-10 row">
+        <div class="col-md-6 p-r-12">
+          <mat-form-field class="full-width"  appearance="outline">
+            <mat-label>Email Id</mat-label>
+            <input matInput
+                   type="email"
+                   name="email"
+                   formControlName="email"
+                   placeholder="Email Id"
+                   required
+                   autocomplete="off" trimOnBlur>
+            <mat-error *ngIf="isValidField(registerationForm, 'email')">
+              {{ getErrorMessage(registerationForm, validation_messages, 'email') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 p-r-12">
+          <mat-form-field class="full-width"  appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input matInput
+                   name="phone"
+                   formControlName="phone"
+                   placeholder="Phone Number"
+                   required maxlength="10"
+                   minlength="10"
+                   autocomplete="off" trimOnBlur>
+            <mat-error *ngIf="isValidField(registerationForm, 'phone')">
+              {{ getErrorMessage(registerationForm, validation_messages, 'phone') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row m-b-10">
+        <div class="col-md-6 p-r-12">
+          <mat-form-field class="full-width"  appearance="outline">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender" placeholder="Gender"
+                        name="gender" id="gender" required>
+              <mat-option *ngFor="let genderdata of genderData" [value]="genderdata">{{genderdata}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="isValidField(registerationForm, 'gender')">
+              {{ getErrorMessage(registerationForm, validation_messages, 'gender')}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </mat-card-content>
+    <mat-card-footer>
+      <div class="d-flex justify-content-end">
+        <div class="m-b-r">
+          <button mat-raised-button color="primary" [disabled]="!registerationForm.valid" type="submit">Submit</button>
+        </div>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</form>

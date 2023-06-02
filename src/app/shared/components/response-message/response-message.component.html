@@ -1,0 +1,11 @@
+<div id="resultMessageComponent">
+  <div *ngIf="isValidMessage()">
+    <div *ngIf="!isHTMLContent" class="message {{messageType}} animated fadeIn" align="center">
+      {{message}}
+      <a class="close" *ngIf="showCloseButton==true" (click)="clearMessage()" title="Hide">×</a>
+    </div>
+    <div *ngIf="isHTMLContent" class="message {{messageType}} animated fadeIn" [innerHTML]="message" align="center">
+      <a class="close" *ngIf="showCloseButton==true" (click)="clearMessage()" title="Hide">×</a>
+    </div>
+  </div>
+</div>

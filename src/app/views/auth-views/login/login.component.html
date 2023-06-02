@@ -1,0 +1,19 @@
+<app-response-message type="SUCCESS" [message]="successMessageStatus"></app-response-message>
+<app-response-message type="ERROR" [message]="errorMessageStatus"></app-response-message>
+<div align="center">
+  <br />
+  <br />
+  <button (click)="register()" mat-raised-button color="primary">register</button>
+  <br />
+  <br />
+  <button mat-raised-button color="warn" (click)="openDialog()">Open Dialog</button>
+  <br />
+  <br />
+  <button mat-raised-button color="primary" (click)="openConfirm()">Confirm Popup</button>
+  <br />
+  <br />
+  <button mat-raised-button color="primary" (click)="getDetails()">Get Details</button>
+  <br />
+  <br />
+
+</div>

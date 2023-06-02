@@ -1,0 +1,14 @@
+<div mat-dialog-title>{{ data.title}}</div>
+<div mat-dialog-content class="m-b-20">
+  {{ data.message}}
+</div>
+<div mat-dialog-actions align="end">
+  <div class="d-flex justify-content-end">
+    <button type="button" color="accent" mat-raised-button (click)="dialogRef.close(false)">
+      {{data.cancelButton}}
+    </button>
+    <button type="button" mat-raised-button color="primary" (click)="dialogRef.close(true)">
+      {{data.okButton}}
+    </button>
+  </div>
+</div>
