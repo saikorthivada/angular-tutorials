@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChildActivateClassGuard } from './child-activate-class.guard';
+import { childActivateGuard } from './child-activate.guard';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { AuthComponent } from './layouts/auth/auth.component';
 
@@ -26,6 +28,8 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    // canActivateChild: [childActivateGuard],
+    canActivateChild: [ChildActivateClassGuard],
     children: [
       {
         path: 'home',
