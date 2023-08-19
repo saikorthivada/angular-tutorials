@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { SendRecieveService } from '../send-recieve.service';
 
 @Component({
@@ -9,8 +10,8 @@ import { SendRecieveService } from '../send-recieve.service';
 export class ReceiverComponent {
 
   receivedMessage: string= '';
-
-  constructor(private sendRecieveService: SendRecieveService){
+  private sendRecieveService: SendRecieveService = new SendRecieveService();
+  constructor(private router: Router){
     this.receivedMessage = this.sendRecieveService.getMessage();
   }
 }

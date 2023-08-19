@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class SendRecieveService {
 
   private message: string = 'Default value';
-
+  private router: Router = inject(Router);
   constructor() { }
 
   public setMessage(input: string): void {

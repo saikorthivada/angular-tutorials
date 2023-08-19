@@ -11,7 +11,7 @@ export class SenderComponent {
 
   senderParam: string = '';
 
-  sendReciveService: SendRecieveService = inject(SendRecieveService);
+  sendReciveService: SendRecieveService = new SendRecieveService();
 
   routerService: Router = inject(Router);
 
