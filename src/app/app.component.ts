@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,11 @@ export class AppComponent {
   todos: any[] = [];
   loading: boolean = false;
   error: string = '';
-  httpService: HttpClient = inject(HttpClient);
+  userService: UserService = inject(UserService);
+
   constructor() {
     this.loading = true;
-    this.httpService.get('https://jsonplaceholder.typicode.com/todos').subscribe((result: any) => {
-      console.log(result);
+    this.userService.getTodos().subscribe((result) => {
       this.todos = result;
       this.loading = false;
     }, (error) => {
