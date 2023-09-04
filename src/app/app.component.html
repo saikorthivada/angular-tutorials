@@ -1,2 +1,28 @@
-<p>Angular V16 launched Modular approach</p>
-<router-outlet></router-outlet>
+<ng-container *ngIf="loading">
+  <p>Loading ....</p>
+</ng-container>
+
+<ng-container *ngIf="!loading && error">
+  {{error}}
+</ng-container>
+
+<ng-container *ngIf="!loading && todos.length === 0 && !error">
+  <p>No records found</p>
+</ng-container>
+
+<table *ngIf="!loading && todos.length > 0 && !error">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Completed Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let todo of todos">
+      <td>{{todo.id}}</td>
+      <td>{{todo.title}}</td>
+      <td>{{todo.completed}}</td>
+    </tr>
+  </tbody>
+</table>
