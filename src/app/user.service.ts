@@ -11,6 +11,14 @@ export class UserService {
   constructor() { }
 
   public getTodos():Observable<any> {
-    return this.httpService.get('https://jsonplaceholder.typicode.com/todos');
+    const httpHeaders = new HttpHeaders({
+      'Authorization': 'Sample auth token',
+      channel: 'channelName'
+    });
+    const updatedHeaders = httpHeaders.set('channel', 'techshareskk');
+    console.log(updatedHeaders.get('channel'));
+    return this.httpService.get('https://jsonplaceholder.typicode.com/todos', {
+      headers: updatedHeaders
+    });
   }
 }
