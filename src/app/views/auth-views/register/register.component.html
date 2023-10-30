@@ -1,0 +1,117 @@
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+  <div class="row justify-content-center mt-5">
+    <mat-card class="col-md-3">
+      <mat-card-header class="d-flex justify-content-center">
+        <h3>Registration</h3>
+      </mat-card-header>
+      <mat-card-content class="mt-2">
+
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="First Name" formControlName="firstname">
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+          <div
+            *ngIf="registerForm.get('firstname')?.invalid && (registerForm.get('firstname')?.touched || registerForm.get('firstname')?.dirty)">
+            <p class="error-margin text-danger" *ngIf="registerForm.get('firstname')?.errors?.required">First Name is
+              required</p>
+            <p class="error-margin text-danger" *ngIf="registerForm.get('firstname')?.errors?.minlength">First Name
+              should be minimum of 5 Characters</p>
+            <p class="error-margin text-danger" *ngIf="registerForm.get('firstname')?.errors?.maxlength">First Name
+              should be maximum of 30 Characters</p>
+          </div>
+        </div>
+
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Last Name" formControlName="lastname">
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+          <div
+            *ngIf="registerForm.get('lastname')?.invalid && (registerForm.get('lastname')?.touched || registerForm.get('lastname')?.dirty)">
+            <p class="error-margin text-danger" *ngIf="registerForm.get('lastname')?.errors?.required">Last Name is
+              required</p>
+            <p class="error-margin text-danger" *ngIf="registerForm.get('lastname')?.errors?.minlength">Last Name should
+              be minimum of 5 Characters</p>
+            <p class="error-margin text-danger" *ngIf="registerForm.get('lastname')?.errors?.maxlength">Last Name should
+              be maximum of 30 Characters</p>
+          </div>
+        </div>
+
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="email">
+            <mat-icon matSuffix>mail</mat-icon>
+          </mat-form-field>
+          <div
+            *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)">
+            <p class="error-margin text-danger" *ngIf="registerForm.get('email')?.errors?.required">Email is required
+            </p>
+            <p class="error-margin text-danger" *ngIf="registerForm.get('email')?.errors?.pattern">Enter valid email</p>
+          </div>
+        </div>
+
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Mobile Number</mat-label>
+            <input matInput placeholder="Mobile Number" formControlName="mobileNumber">
+            <mat-icon matSuffix>call</mat-icon>
+          </mat-form-field>
+          <div
+            *ngIf="registerForm.get('mobileNumber')?.invalid && (registerForm.get('mobileNumber')?.touched || registerForm.get('mobileNumber')?.dirty)">
+            <p class="error-margin text-danger" *ngIf="registerForm.get('mobileNumber')?.errors?.required">Mobile Number
+              is required</p>
+            <p class="error-margin text-danger"
+              *ngIf="registerForm.get('mobileNumber')?.errors?.minlength || registerForm.get('mobileNumber')?.errors?.maxlength">
+              Mobile Number should be of 10 Characters</p>
+          </div>
+        </div>
+
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input [type]="isPasswordHidden ? 'password' : 'text'" matInput placeholder="Password" formControlName="password">
+            <mat-icon matSuffix (click)="isPasswordHidden = !isPasswordHidden">{{ isPasswordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+          <div
+            *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)">
+            <p class="error-margin text-danger" *ngIf="registerForm.get('password')?.errors?.required">password is
+              required</p>
+            <p class="error-margin text-danger" *ngIf="registerForm.get('password')?.errors?.pattern">Password should
+              contain alpha, numeric and special characters of minimum 8 characters</p>
+          </div>
+        </div>
+
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Intrested Topics</mat-label>
+            <input matInput placeholder="Intrested Topics" formControlName="interested_topics">
+            <mat-icon matSuffix>notes</mat-icon>
+          </mat-form-field>
+          <div
+            *ngIf="registerForm.get('interested_topics')?.invalid && (registerForm.get('interested_topics')?.touched || registerForm.get('interested_topics')?.dirty)">
+            <p class="error-margin text-danger" *ngIf="registerForm.get('interested_topics')?.errors?.required">
+              Interested topics is required</p>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-footer class="mb-3">
+        <mat-checkbox class="example-margin" [(ngModel)]="isAgreed" [ngModelOptions]="{standalone: true}">I agree for
+          terms and conditions</mat-checkbox>
+        <div class="d-flex justify-content-between">
+          <div class="mt-2 ms-2">
+            <a [routerLink]="['/login']" >Already Register ?</a>
+          </div>
+          <div>
+            <button type="reset" #resetButton mat-raised-button color="accent" class="me-2">Cancel</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="registerForm.invalid || !isAgreed">Register</button>
+          </div>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</form>
