@@ -1,1 +1,50 @@
-<p>login works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <div class="row justify-content-center pt-20-per">
+    <mat-card class="col-md-3">
+      <mat-card-header class="d-flex justify-content-center">
+        <h3>Login</h3>
+      </mat-card-header>
+      <mat-card-content class="mt-2">
+
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="email">
+            <mat-icon matSuffix>mail</mat-icon>
+          </mat-form-field>
+          <div
+            *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)">
+            <p class="error-margin text-danger" *ngIf="loginForm.get('email')?.errors?.required">Email is required
+            </p>
+            <p class="error-margin text-danger" *ngIf="loginForm.get('email')?.errors?.pattern">Enter valid email</p>
+          </div>
+        </div>
+
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input [type]="isPasswordHidden ? 'password' : 'text'" matInput placeholder="Password" formControlName="password">
+            <mat-icon matSuffix (click)="isPasswordHidden = !isPasswordHidden">{{ isPasswordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+          <div
+            *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)">
+            <p class="error-margin text-danger" *ngIf="loginForm.get('password')?.errors?.required">password is
+              required</p>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-footer class="mb-3">
+        <div class="d-flex justify-content-between">
+          <div class="mt-2 ms-2">
+            <a [routerLink]="['/register']" >Do not have an account ?</a>
+          </div>
+          <div>
+            <button type="reset" #resetButton mat-raised-button color="accent" class="me-2">Cancel</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Login</button>
+          </div>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</form>
