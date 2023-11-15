@@ -8,6 +8,9 @@ import {MatInputModule} from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -19,7 +22,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatInputModule,
     MatIconModule,
     MatCheckboxModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatMenuModule,
   ],
   exports: [
     MatSlideToggleModule,
@@ -29,7 +34,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatInputModule,
     MatIconModule,
     MatCheckboxModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatMenuModule
   ]
 })
 export class MaterialModule { }

@@ -1,0 +1,28 @@
+<div>
+  <mat-toolbar color="primary">
+    <span>User Management</span>
+    <div class="ps-3">
+      <a [routerLink]="['/dashboard']" routerLinkActive="router-link-active" class="pe-3">Dashboard</a>
+      <a [routerLink]="['/notes']" routerLinkActive="router-link-active" class="pe-3">Notes</a>
+      <a [routerLink]="['/reset-password']" routerLinkActive="router-link-active" class="pe-3">Reset Password</a>
+      <a [routerLink]="['/profile']" routerLinkActive="router-link-active" class="pe-3">Profile</a>
+    </div>
+    <span class="spacer"></span>
+    <div>
+      <p>Sai Kumar</p>
+    </div>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [routerLink]="['/profile']">
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>Sign out</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+</div>

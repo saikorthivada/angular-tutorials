@@ -8,12 +8,14 @@ import { MaterialModule } from './common/modules/material/material.module';
 import { PreDefinedModule } from './common/modules/pre-defined/pre-defined.module';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { TopBarComponent } from './common/components/top-bar/top-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    TopBarComponent
   ],
   imports: [
     BrowserModule,
