@@ -9,6 +9,7 @@ import { PreDefinedModule } from './common/modules/pre-defined/pre-defined.modul
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { TopBarComponent } from './common/components/top-bar/top-bar.component';
+import { UserDefinedModule } from './common/modules/user-defined/user-defined.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TopBarComponent } from './common/components/top-bar/top-bar.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    PreDefinedModule
+    PreDefinedModule,
+    UserDefinedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
