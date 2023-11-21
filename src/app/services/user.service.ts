@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { LOCALSTORAGE_KEYS } from '../common/constants/local-storage.constants';
 
 export interface IUser {
   id?: string;
@@ -21,6 +22,8 @@ export class UserService {
   private ENDPOINT = 'users';
   private userURL = `${environment.BASE_URL}${this.ENDPOINT}`;
 
+  private userNameSignal = signal(localStorage.getItem(LOCALSTORAGE_KEYS.USER_NAME) ?? '');
+
   constructor(private httpClient: HttpClient) { }
 
   createUser(payload: IUser): Observable<any> {
@@ -33,5 +36,25 @@ export class UserService {
 
   getAllUsers(): Observable<IUser[]> {
     return this.httpClient.get(this.userURL) as Observable<IUser[]>;
+  }
+
+  getUserById(userId: string): Observable<IUser> {
+    return this.httpClient.get(`${this.userURL}/${userId}`) as Observable<IUser>;
+  }
+
+  updateUserByUserId(userId: string, userDetails: IUser): Observable<IUser> {
+    if(typeof userDetails.interested_topics === 'string') {
+      userDetails.interested_topics = userDetails.interested_topics.split(',');
+    }
+    return this.httpClient.put(`${this.userURL}/${userId}`, userDetails) as Observable<IUser>;
+  }
+
+  setUsername(input: string) {
+    localStorage.setItem(LOCALSTORAGE_KEYS.USER_NAME,input);
+    this.userNameSignal.set(input);
+  }
+
+  getUserName(): string {
+    return this.userNameSignal();
   }
 }

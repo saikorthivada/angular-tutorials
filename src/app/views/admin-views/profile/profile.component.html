@@ -1,1 +1,92 @@
-<p>profile works!</p>
+<form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+  <div class="row justify-content-center mt-5">
+    <mat-card class="col-md-3">
+      <mat-card-header class="d-flex justify-content-center">
+        <h3>Profile Update</h3>
+      </mat-card-header>
+      <mat-card-content class="mt-2">
+        <div>
+          <mat-form-field appearance="outline" class="disable">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="email" readonly>
+            <mat-icon matSuffix>mail</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="First Name" formControlName="firstname">
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+          <div
+            *ngIf="profileForm.get('firstname')?.invalid && (profileForm.get('firstname')?.touched || profileForm.get('firstname')?.dirty)">
+            <p class="error-margin text-danger" *ngIf="profileForm.get('firstname')?.errors?.required">First Name is
+              required</p>
+            <p class="error-margin text-danger" *ngIf="profileForm.get('firstname')?.errors?.minlength">First Name
+              should be minimum of 5 Characters</p>
+            <p class="error-margin text-danger" *ngIf="profileForm.get('firstname')?.errors?.maxlength">First Name
+              should be maximum of 30 Characters</p>
+          </div>
+        </div>
+
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Last Name" formControlName="lastname">
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+          <div
+            *ngIf="profileForm.get('lastname')?.invalid && (profileForm.get('lastname')?.touched || profileForm.get('lastname')?.dirty)">
+            <p class="error-margin text-danger" *ngIf="profileForm.get('lastname')?.errors?.required">Last Name is
+              required</p>
+            <p class="error-margin text-danger" *ngIf="profileForm.get('lastname')?.errors?.minlength">Last Name should
+              be minimum of 5 Characters</p>
+            <p class="error-margin text-danger" *ngIf="profileForm.get('lastname')?.errors?.maxlength">Last Name should
+              be maximum of 30 Characters</p>
+          </div>
+        </div>
+
+
+
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Mobile Number</mat-label>
+            <input matInput placeholder="Mobile Number" formControlName="mobileNumber">
+            <mat-icon matSuffix>call</mat-icon>
+          </mat-form-field>
+          <div
+            *ngIf="profileForm.get('mobileNumber')?.invalid && (profileForm.get('mobileNumber')?.touched || profileForm.get('mobileNumber')?.dirty)">
+            <p class="error-margin text-danger" *ngIf="profileForm.get('mobileNumber')?.errors?.required">Mobile Number
+              is required</p>
+            <p class="error-margin text-danger"
+              *ngIf="profileForm.get('mobileNumber')?.errors?.minlength || profileForm.get('mobileNumber')?.errors?.maxlength">
+              Mobile Number should be of 10 Characters</p>
+          </div>
+        </div>
+
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Intrested Topics</mat-label>
+            <input matInput placeholder="Intrested Topics" formControlName="interested_topics">
+            <mat-icon matSuffix>notes</mat-icon>
+          </mat-form-field>
+          <div
+            *ngIf="profileForm.get('interested_topics')?.invalid && (profileForm.get('interested_topics')?.touched || profileForm.get('interested_topics')?.dirty)">
+            <p class="error-margin text-danger" *ngIf="profileForm.get('interested_topics')?.errors?.required">
+              Interested topics is required</p>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-footer class="mb-3">
+        <div class="d-flex justify-content-end">
+          <div>
+            <button type="button" mat-raised-button color="accent" class="me-2" (click)="getUserDetails()">Cancel</button>
+            <button type="submit" mat-raised-button color="primary"
+              [disabled]="profileForm.invalid">Update</button>
+          </div>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</form>

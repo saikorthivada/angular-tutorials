@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 import { ConfirmationComponent } from '../confirmation/confirmation.component';
 import {LOCALSTORAGE_KEYS} from './../../constants/local-storage.constants';
 @Component({
@@ -9,9 +10,8 @@ import {LOCALSTORAGE_KEYS} from './../../constants/local-storage.constants';
   styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent {
-  userName: string = '';
-  constructor(private dialog: MatDialog, private router: Router) {
-    this.userName = localStorage.getItem(LOCALSTORAGE_KEYS.USER_NAME) ?? 'User Name';
+  constructor(private dialog: MatDialog, private router: Router, public userService: UserService) {
+    // this.userName = this.userService.getUserName() ?? 'User Name';
   }
 
   public logout(): void {

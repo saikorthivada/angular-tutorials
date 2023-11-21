@@ -9,7 +9,7 @@
     </div>
     <span class="spacer"></span>
     <div>
-      <p>{{userName | titlecase}}</p>
+      <p>{{userService.getUserName() | titlecase}}</p>
     </div>
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
       <mat-icon>account_circle</mat-icon>

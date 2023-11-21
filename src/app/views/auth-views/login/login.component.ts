@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
          if(filteredUsers.length > 0) {
           localStorage.setItem(LOCALSTORAGE_KEYS.ID, filteredUsers[0]?.id ?? '');
           localStorage.setItem(LOCALSTORAGE_KEYS.UUID, filteredUsers[0]?.uuid ?? '');
-          localStorage.setItem(LOCALSTORAGE_KEYS.USER_NAME, `${filteredUsers[0].firstname} ${filteredUsers[0].lastname}` )
+          this.userService.setUsername(`${filteredUsers[0].firstname} ${filteredUsers[0].lastname}`);
           this.router.navigate(['dashboard']);
          } else {
           this.snackbarService.open('Invalid User Credentials', 'X', {
