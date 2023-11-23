@@ -49,6 +49,11 @@ export class UserService {
     return this.httpClient.put(`${this.userURL}/${userId}`, userDetails) as Observable<IUser>;
   }
 
+  updatePasswordByUserId(userId: string, password: string): Observable<IUser> {
+    return this.httpClient.put(`${this.userURL}/${userId}`, {
+      password: password
+    }) as Observable<IUser>
+  }
   setUsername(input: string) {
     localStorage.setItem(LOCALSTORAGE_KEYS.USER_NAME,input);
     this.userNameSignal.set(input);
