@@ -1,0 +1,45 @@
+<form [formGroup]="notesForm" (ngSubmit)="addNotes()">
+  <div class="row justify-content-center mt-5">
+    <mat-card class="col-md-3">
+      <mat-card-header class="d-flex justify-content-center">
+        <h3>Add Notes</h3>
+      </mat-card-header>
+      <mat-card-content class="mt-2">
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Title</mat-label>
+            <input type="text" matInput placeholder="Password" formControlName="title">
+          </mat-form-field>
+          <div
+            *ngIf="notesForm.get('title')?.invalid && (notesForm.get('title')?.touched || notesForm.get('title')?.dirty)">
+            <p class="error-margin text-danger" *ngIf="notesForm.get('title')?.errors?.required">Title is
+              required</p>
+            <p class="error-margin text-danger" *ngIf="notesForm.get('title')?.errors?.minlength">Title should be minimum of 3 characters</p>
+          </div>
+        </div>
+
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput rows="6" formControlName="description"></textarea>
+          </mat-form-field>
+          <div
+            *ngIf="notesForm.get('description')?.invalid && (notesForm.get('description')?.touched || notesForm.get('description')?.dirty)">
+            <p class="error-margin text-danger" *ngIf="notesForm.get('description')?.errors?.required">Description is
+              required</p>
+            <p class="error-margin text-danger" *ngIf="notesForm.get('description')?.errors?.minlength">Description should be minimum of 5 characters</p>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-footer class="mb-3">
+        <div class="d-flex justify-content-end">
+          <div>
+            <button type="reset" #resetBtn mat-raised-button color="accent" class="me-2">Cancel</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="notesForm.invalid">Add Notes</button>
+          </div>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</form>

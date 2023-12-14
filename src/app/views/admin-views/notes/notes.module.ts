@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { NotesRoutingModule } from './notes-routing.module';
 import { NotesComponent } from './notes.component';
+import { MaterialModule } from 'src/app/common/modules/material/material.module';
+import { PreDefinedModule } from 'src/app/common/modules/pre-defined/pre-defined.module';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { NotesComponent } from './notes.component';
   ],
   imports: [
     CommonModule,
-    NotesRoutingModule
+    NotesRoutingModule,
+    MaterialModule,
+    PreDefinedModule
   ]
 })
 export class NotesModule { }
