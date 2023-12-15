@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { ConfirmationComponent } from 'src/app/common/components/confirmation/confirmation.component';
 import { LOCALSTORAGE_KEYS } from 'src/app/common/constants/local-storage.constants';
 import { INote, NotesService } from 'src/app/services/notes.service';
 
@@ -20,16 +22,57 @@ export class NotesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(private notesService: NotesService, private snackBarService: MatSnackBar,
-    private router: Router) {
-    // // Create 100 users
-    // const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
-
-    // // Assign the data to the data source for the table to render
-    // this.dataSource = new MatTableDataSource(users);
+    private router: Router, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
       this.getAllNotes();
+  }
+
+  public deleteConfirmation(note:INote): void {
+    this.dialog.open(ConfirmationComponent, {
+      minWidth: '400px',
+      disableClose: true,
+      data: {
+        title: 'Delete confirmation',
+        message: 'Are you sure... you want to delete note ?',
+        buttons: [
+          {
+            label: 'No',
+            callback: () => {
+              console.log('call back from no');
+            },
+            color: 'accent'
+          },
+          {
+            label: 'Delete',
+            callback: () => this.deleteConfirmed(note),
+            color: 'primary'
+          }
+        ]
+      }
+    })
+  }
+
+  private deleteConfirmed(note: INote): void {
+    this.notesService.deleteNote(note.id as string).subscribe((res: INote) => {
+      if(res) {
+        this.showSnackbar('Note deleted successfully');
+        this.getAllNotes();
+      } else {
+        this.showSnackbar('Note deletion failed... Try again');
+      }
+    }, () => {
+      this.showSnackbar('Something went wrong... Please try again');
+    })
+  }
+
+  public isTableVisible(): boolean {
+    if(this.dataSource?.data?.length) {
+      return this.dataSource.data.length > 0;
+    }
+    return false;
+
   }
 
   private getAllNotes(): void {

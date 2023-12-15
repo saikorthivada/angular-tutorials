@@ -33,7 +33,10 @@
       </mat-card-content>
 
       <mat-card-footer class="mb-3">
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-around">
+          <div>
+            <a [routerLink]="['/notes']" >Check all notes</a>
+          </div>
           <div>
             <button type="reset" #resetBtn mat-raised-button color="accent" class="me-2">Cancel</button>
             <button type="submit" mat-raised-button color="primary" [disabled]="notesForm.invalid">Add Notes</button>
