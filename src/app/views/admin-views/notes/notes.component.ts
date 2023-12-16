@@ -100,6 +100,10 @@ export class NotesComponent implements OnInit {
     }
   }
 
+  public editNote(note: INote): void {
+    this.router.navigate(['notes', 'details', note.id as string]);
+  }
+
   private showSnackbar(message: string, content = 'X', duration = 3000) {
     this.snackBarService.open(message, content, {
       direction: 'ltr',

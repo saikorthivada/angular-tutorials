@@ -1,8 +1,8 @@
-<form [formGroup]="notesForm" (ngSubmit)="addNotes()">
+<form [formGroup]="notesForm" (ngSubmit)="addOrUpdateNotes()">
   <div class="row justify-content-center mt-5">
     <mat-card class="col-md-3">
       <mat-card-header class="d-flex justify-content-center">
-        <h3>Add Notes</h3>
+        <h3>{{id ? 'Update':'Add'}} Notes</h3>
       </mat-card-header>
       <mat-card-content class="mt-2">
         <div>
@@ -30,6 +30,10 @@
             <p class="error-margin text-danger" *ngIf="notesForm.get('description')?.errors?.minlength">Description should be minimum of 5 characters</p>
           </div>
         </div>
+        <div *ngIf="id && currentNoteDetails">
+          <h6>Created Time: {{currentNoteDetails?.createdAt | date: 'short'}}</h6>
+          <h6>Updated Time: {{currentNoteDetails?.updatedAt | date: 'short'}}</h6>
+        </div>
       </mat-card-content>
 
       <mat-card-footer class="mb-3">
@@ -39,7 +43,7 @@
           </div>
           <div>
             <button type="reset" #resetBtn mat-raised-button color="accent" class="me-2">Cancel</button>
-            <button type="submit" mat-raised-button color="primary" [disabled]="notesForm.invalid">Add Notes</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="notesForm.invalid">{{id ? 'Update':'Add'}} Notes</button>
           </div>
         </div>
       </mat-card-footer>

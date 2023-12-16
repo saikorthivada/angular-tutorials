@@ -35,4 +35,9 @@ export class NotesService {
   public deleteNote(noteId: string): Observable<INote> {
     return this.http.delete(`${this.notesUrl}/${noteId}`) as Observable<INote>;
   }
+
+  public updateNotes(payload: INote): Observable<any> {
+    payload.updatedAt = (new Date()).toString();
+    return this.http.put(`${this.notesUrl}/${payload.id}`, payload) as Observable<any>;
+  }
 }
