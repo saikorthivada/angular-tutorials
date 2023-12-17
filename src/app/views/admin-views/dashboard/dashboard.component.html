@@ -1,1 +1,58 @@
-<p>dashboard works!</p>
+<div class="container mt-5">
+  <h1>Dashboard</h1>
+  <div class="d-flex justify-content-around">
+    <mat-card class="card-one">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>All Users</mat-card-title>
+          <mat-card-subtitle>Here you can see the number of users registered in</mat-card-subtitle>
+        </mat-card-title-group>
+      </mat-card-header>
+      <div class="p-1">
+        <hr>
+      </div>
+      <mat-card-content>
+        <div class="text-center">
+          <p class="m-0 label">Users </p>
+          <p class="count">{{counts.allUsers}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="card-two">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>All Notes</mat-card-title>
+          <mat-card-subtitle>Here you can see the number of notes registered</mat-card-subtitle>
+        </mat-card-title-group>
+      </mat-card-header>
+      <div class="p-1">
+        <hr>
+      </div>
+      <mat-card-content>
+        <div class="text-center">
+          <p class="m-0 label">All Notes </p>
+          <p class="count">{{counts.allNotes}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="card-three">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>Current User Notes</mat-card-title>
+          <mat-card-subtitle>Here you can see the number of notes registered by current user </mat-card-subtitle>
+        </mat-card-title-group>
+      </mat-card-header>
+      <div class="p-1">
+        <hr>
+      </div>
+      <mat-card-content>
+        <div class="text-center">
+          <p class="m-0 label">My Notes</p>
+          <p class="count">{{counts.myNotes}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
