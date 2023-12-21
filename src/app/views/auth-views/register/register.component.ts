@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { BaseClass } from 'src/app/common/utils/baseclass';
 import { REGULAR_EXPRESSIONS } from 'src/app/common/utils/regex-utils';
 import { IUser, UserService } from 'src/app/services/user.service';
 
@@ -10,16 +10,14 @@ import { IUser, UserService } from 'src/app/services/user.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent extends BaseClass implements OnInit {
   registerForm!: FormGroup;
   isAgreed: boolean = false;
   isPasswordHidden: boolean =  true;
   @ViewChild('resetButton') resetButton!: MatButton;
 
-  constructor(private formBuilder: FormBuilder,
-    private userService: UserService,
-    private snackBarService: MatSnackBar) {
-
+  constructor(private userService: UserService) {
+      super();
   }
 
   ngOnInit(): void {
@@ -38,20 +36,10 @@ export class RegisterComponent implements OnInit {
       this.userService.getAllUsers().subscribe((usersList: IUser[]) => {
         const userEmailExist = usersList.filter((obj: IUser) => obj.email === this.registerForm.value?.email).length > 0;
         if(userEmailExist) {
-          this.snackBarService.open('User Already exist', 'X', {
-            direction: 'ltr',
-            duration: 3000,
-            verticalPosition: 'top',
-            horizontalPosition: 'right'
-          });
+          this.toastService.openToast('User Already exist');
         } else{
-          this.userService.createUser(this.registerForm.value).subscribe((res) => {
-            this.snackBarService.open('User created successfully', 'X', {
-              direction: 'ltr',
-              duration: 3000,
-              verticalPosition: 'top',
-              horizontalPosition: 'right'
-            });
+          this.userService.createUser(this.registerForm.value).subscribe(() => {
+            this.toastService.openToast('User created successfully');
             this.resetButton._elementRef.nativeElement?.click();
           })
         }

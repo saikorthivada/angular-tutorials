@@ -1,9 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { LOCALSTORAGE_KEYS } from 'src/app/common/constants/local-storage.constants';
+import { BaseClass } from 'src/app/common/utils/baseclass';
 import { REGULAR_EXPRESSIONS } from 'src/app/common/utils/regex-utils';
 import { IUser, UserService } from 'src/app/services/user.service';
 
@@ -12,7 +11,7 @@ import { IUser, UserService } from 'src/app/services/user.service';
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss']
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent extends BaseClass implements OnInit {
 
   resetForm!: FormGroup;
   currentPasswordHidden: boolean = true;
@@ -22,11 +21,9 @@ export class ResetPasswordComponent implements OnInit {
 
   @ViewChild('resetBtn') resetBtn!: MatButton;
 
-  constructor(private formBuilder: FormBuilder,
-    private snackBarService: MatSnackBar,
-    private userService: UserService,
-    private router: Router) {
-
+  constructor(
+    private userService: UserService) {
+      super();
   }
 
   ngOnInit(): void {
@@ -54,7 +51,7 @@ export class ResetPasswordComponent implements OnInit {
       if (payload?.newPassword === payload.confirmPassword) {
         const userId = localStorage.getItem(LOCALSTORAGE_KEYS.ID) ?? '';
         if (!userId) {
-          this.showSnackbar('User Id does not exist... Please login');
+          this.toastService.openToast('User Id does not exist... Please login');
           setTimeout(() => {
             this.router.navigate(['login']);
           }, 2000);
@@ -62,10 +59,10 @@ export class ResetPasswordComponent implements OnInit {
           this.checkPassword();
         }
       } else {
-        this.showSnackbar('New passsword should match the confirm password');
+        this.toastService.openToast('New passsword should match the confirm password');
       }
     } else {
-      this.showSnackbar('Current password should not be eqal to new password');
+      this.toastService.openToast('Current password should not be eqal to new password');
     }
   }
 
@@ -77,7 +74,7 @@ export class ResetPasswordComponent implements OnInit {
       if (storedPassword === payload.currentPassword) {
         this.updatePasswordInAPI();
       } else {
-        this.showSnackbar('Current password does not match');
+        this.toastService.openToast('Current password does not match');
       }
     })
   }
@@ -86,21 +83,12 @@ export class ResetPasswordComponent implements OnInit {
     const payload = this.resetForm.value;
     const userId = localStorage.getItem(LOCALSTORAGE_KEYS.ID) ?? '';
     this.userService.updatePasswordByUserId(userId, payload.newPassword).subscribe((res: IUser) => {
-      this.showSnackbar('Password updated successfully');
+      this.toastService.openToast('Password updated successfully');
       this.resetBtn._elementRef.nativeElement.click();
       this.passwordMatch = null;
     }, (error: any) => {
-      this.showSnackbar('Something went wrong');
+      this.toastService.openToast('Something went wrong');
     });
   }
 
-
-  private showSnackbar(message: string, content = 'X', duration = 3000) {
-    this.snackBarService.open(message, content, {
-      direction: 'ltr',
-      duration: duration,
-      verticalPosition: 'top',
-      horizontalPosition: 'right'
-    });
-  }
 }

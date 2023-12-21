@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { FormGroup, Validators } from '@angular/forms';
 import { LOCALSTORAGE_KEYS } from 'src/app/common/constants/local-storage.constants';
+import { BaseClass } from 'src/app/common/utils/baseclass';
 import { IUser, UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,15 +9,14 @@ import { IUser, UserService } from 'src/app/services/user.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent extends BaseClass implements OnInit {
   profileForm!: FormGroup;
   userId!: string;
 
   userDetails!: IUser;
-  constructor(private formBuilder: FormBuilder,
-    private userService: UserService,
-    private snackBarService: MatSnackBar,
-    private router: Router) {
+  constructor(
+    private userService: UserService) {
+    super();
     this.userId = localStorage.getItem(LOCALSTORAGE_KEYS.ID) ?? '';
   }
 
@@ -35,59 +33,34 @@ export class ProfileComponent implements OnInit {
 
   getUserDetails(): void {
 
-    if(!this.userId) {
-      this.snackBarService.open('User ID not found', 'X', {
-        direction: 'ltr',
-        duration: 3000,
-        verticalPosition: 'top',
-        horizontalPosition: 'right'
-      });
+    if (!this.userId) {
+      this.toastService.openToast('User ID not found');
 
       setTimeout(() => {
         this.router.navigate(['login']);
       })
     }
-    this.userService.getUserById(this.userId).subscribe((res:IUser) => {
+    this.userService.getUserById(this.userId).subscribe((res: IUser) => {
       this.userDetails = res;
       this.profileForm.patchValue(res);
-    },() => {
-      this.snackBarService.open('Not able to get User details... Try again', 'X', {
-        direction: 'ltr',
-        duration: 3000,
-        verticalPosition: 'top',
-        horizontalPosition: 'right'
-      });
+    }, () => {
+      this.toastService.openToast('Not able to get User details... Try again');
     })
   }
 
   public updateProfile(): void {
-    if(this.userDetails.email !== this.profileForm.value.email) {
-      this.snackBarService.open('User email cant be changed', 'X', {
-        direction: 'ltr',
-        duration: 3000,
-        verticalPosition: 'top',
-        horizontalPosition: 'right'
-      });
+    if (this.userDetails.email !== this.profileForm.value.email) {
+      this.toastService.openToast('User email cant be changed');
       this.getUserDetails();
       return;
     }
     this.userService.updateUserByUserId(this.userId, this.profileForm.value).subscribe((res) => {
-      if(res) {
-        this.snackBarService.open('User Updated Successfully', 'X', {
-          direction: 'ltr',
-          duration: 3000,
-          verticalPosition: 'top',
-          horizontalPosition: 'right'
-        });
+      if (res) {
+        this.toastService.openToast('User Updated Successfully');
         this.userService.setUsername(`${this.profileForm.value?.firstname} ${this.profileForm.value?.lastname}`)
       }
     }, () => {
-      this.snackBarService.open('Something went wrong... Try again', 'X', {
-        direction: 'ltr',
-        duration: 3000,
-        verticalPosition: 'top',
-        horizontalPosition: 'right'
-      });
+      this.toastService.openToast('Something went wrong... Try again',);
     })
   }
 }

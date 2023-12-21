@@ -1,9 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { LOCALSTORAGE_KEYS } from 'src/app/common/constants/local-storage.constants';
+import { BaseClass } from 'src/app/common/utils/baseclass';
 import { INote, NotesService } from 'src/app/services/notes.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { INote, NotesService } from 'src/app/services/notes.service';
   templateUrl: './notes-details.component.html',
   styleUrls: ['./notes-details.component.scss']
 })
-export class NotesDetailsComponent implements OnInit {
+export class NotesDetailsComponent extends BaseClass implements OnInit {
 
   notesForm!: FormGroup;
   @ViewChild('resetBtn') resetBtn!: MatButton;
@@ -21,10 +20,9 @@ export class NotesDetailsComponent implements OnInit {
 
   currentNoteDetails!: INote;
 
-  constructor(private formBuilder: FormBuilder,
-    private notesService: NotesService,
-    private snackBarService: MatSnackBar,
-    private router: Router) {
+  constructor(
+    private notesService: NotesService) {
+      super();
   }
 
   ngOnInit(): void {
@@ -40,14 +38,14 @@ export class NotesDetailsComponent implements OnInit {
     this.notesService.getAllNotes().subscribe((res: INote[]) => {
       const userId = localStorage.getItem(LOCALSTORAGE_KEYS.ID) ?? '';
       if (!userId) {
-        this.showSnackbar('User is invalid ... Please login');
+        this.toastService.openToast('User is invalid ... Please login');
         setTimeout(() => {
           this.router.navigate(['login']);
         }, 2000);
       }
       const filteredNote = res.filter((obj: INote) => obj.id === this.id && obj.createdBy === userId);
       if (filteredNote.length <= 0) {
-        this.showSnackbar('No Notes found ...');
+        this.toastService.openToast('No Notes found ...');
         setTimeout(() => {
           this.router.navigate(['notes']);
         }, 2000);
@@ -56,7 +54,7 @@ export class NotesDetailsComponent implements OnInit {
         this.currentNoteDetails = filteredNote[0];
       }
     }, () => {
-      this.showSnackbar('Something went wrong... Please try again');
+      this.toastService.openToast('Something went wrong... Please try again');
     })
   }
 
@@ -80,13 +78,13 @@ export class NotesDetailsComponent implements OnInit {
     this.notesService.getAllNotes().subscribe((allNotes: INote[]) => {
         const filterednotes = allNotes.filter((obj: INote) => obj.title.toLowerCase().trim() === payload.title.toLowerCase().trim());
         if (filterednotes.length > 0) {
-          this.showSnackbar('Note title already exist');
+          this.toastService.openToast('Note title already exist');
           return;
         } else {
           this.saveNotes(payload);
         }
     }, () => {
-      this.showSnackbar('Something went wrong... Please try again');
+      this.toastService.openToast('Something went wrong... Please try again');
     })
   }
 
@@ -98,35 +96,26 @@ export class NotesDetailsComponent implements OnInit {
     console.log(payload);
     this.notesService.updateNotes(payload).subscribe((res: INote) => {
       if (res) {
-        this.showSnackbar('Notes Updated successfully');
+        this.toastService.openToast('Notes Updated successfully');
         this.currentNoteDetails = res;
       } else {
-        this.showSnackbar('Please try adding again ...');
+        this.toastService.openToast('Please try adding again ...');
       }
     }, () => {
-      this.showSnackbar('Something went wrong... Please try again');
+      this.toastService.openToast('Something went wrong... Please try again');
     })
   }
 
   private saveNotes(payload: INote): void {
     this.notesService.addNotes(payload).subscribe((res: INote) => {
       if (res) {
-        this.showSnackbar('Notes Added successfully');
+        this.toastService.openToast('Notes Added successfully');
         this.resetBtn._elementRef.nativeElement.click();
       } else {
-        this.showSnackbar('Please try adding again ...');
+        this.toastService.openToast('Please try adding again ...');
       }
     }, () => {
-      this.showSnackbar('Something went wrong... Please try again');
+      this.toastService.openToast('Something went wrong... Please try again');
     })
-  }
-
-  private showSnackbar(message: string, content = 'X', duration = 3000) {
-    this.snackBarService.open(message, content, {
-      direction: 'ltr',
-      duration: duration,
-      verticalPosition: 'top',
-      horizontalPosition: 'right'
-    });
   }
 }
