@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { LOCALSTORAGE_KEYS } from './common/constants/local-storage.constants';
-import { UserService } from './services/user.service';
+import { LOCALSTORAGE_KEYS } from '../constants/local-storage.constants';
+import { UserService } from '../../services/user.service';
 
 export const adminAuthGuard: CanActivateFn = async (route, state) => {
   const userId = localStorage.getItem(LOCALSTORAGE_KEYS.ID) ?? '';
