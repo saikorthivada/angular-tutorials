@@ -1,42 +1,33 @@
-import { Component, signal } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { IButton } from 'src/app/common/componentsAsService/confirmation/confirmation.service';
 import { UserService } from 'src/app/services/user.service';
-import { ConfirmationComponent } from '../confirmation/confirmation.component';
-import {LOCALSTORAGE_KEYS} from './../../constants/local-storage.constants';
+import { BaseClass } from '../../utils/baseclass';
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss']
 })
-export class TopBarComponent {
-  constructor(private dialog: MatDialog, private router: Router, public userService: UserService) {
-    // this.userName = this.userService.getUserName() ?? 'User Name';
+export class TopBarComponent extends BaseClass {
+  constructor(public userService: UserService) {
+    super();
   }
 
   public logout(): void {
-    this.dialog.open(ConfirmationComponent, {
-      minWidth: '400px',
-      disableClose: true,
-      data: {
-        title: 'Logout confirmation',
-        message: 'Are you sure to logout ?',
-        buttons: [
-          {
-            label: 'No',
-            callback: () => {
-              console.log('call back from no');
-            },
-            color: 'accent'
-          },
-          {
-            label: 'Yes',
-            callback: () => this.logoutConfirmed(),
-            color: 'primary'
-          }
-        ]
+    const buttons: IButton[] = [
+      {
+        label: 'No',
+        callback: () => {
+          console.log('call back from no');
+        },
+        color: 'accent'
+      },
+      {
+        label: 'Yes',
+        callback: () => this.logoutConfirmed(),
+        color: 'primary'
       }
-    })
+    ];
+    this.confirmationService.showConfirmation('Logout confirmation','Are you sure to logout ?', buttons);
   }
 
   private logoutConfirmed(): void {
