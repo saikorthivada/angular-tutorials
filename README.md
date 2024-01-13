@@ -1,27 +1,37 @@
-# V17
+## Blocks
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.8.
+1. Defer
 
-## Development server
+2. Placeholder &  placeholder(minimum s/ms)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+3. Loading & loading(after s/ms;minimum s/ms)
 
-## Code scaffolding
+4. Error
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Triggers
 
-## Build
+1. on viewport
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. on viewport(templateRef)
 
-## Running unit tests
+3. on timer
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+4. on interaction
 
-## Running end-to-end tests
+5. on interaction(templateRef)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+6. on hover
 
-## Further help
+7. on hover(templateRef)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+8. on idle
+
+9. prefetch on idle
+
+10. on interaction; prefetch on idle
+
+11. when condition
+
+12. on viewport; when condition
+
+
