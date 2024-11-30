@@ -1,1 +1,12 @@
 <h1>Techshareskk - V-19</h1>
+<input type="text" placeholder="ngModel" [(ngModel)]="firstName"/>
+
+{{firstName()}}
+
+<button (click)="updateName()">Update name</button>
+
+<br/>
+<br/>
+<input [(ngModel)]="studentDetails().name"/>
+
+{{studentDetails().name}}
