@@ -67,7 +67,8 @@
               "buildTarget": "v-19:build:production"
             },
             "development": {
-              "buildTarget": "v-19:build:development"
+              "buildTarget": "v-19:build:development",
+              "hmr": false
             }
           },
           "defaultConfiguration": "development"
