@@ -1,1 +1,18 @@
 <h1>Techshareskk - V-19</h1>
+<button (click)="next()">Next</button>
+<button (click)="reload()">Reload</button>
+@if(todoResource.isLoading()) {
+  <p>Loading ....</p>
+} @else {
+  <p>{{todo()}}</p>
+}
+
+<!-- <button (click)="reload()">Reload</button>
+@if(todosResource.isLoading()) {
+  <p>Loading ....</p>
+} @else {
+  <ng-container *ngFor="let item of list()">
+    <p>{{item.title}}</p>
+  </ng-container>
+} -->
+
