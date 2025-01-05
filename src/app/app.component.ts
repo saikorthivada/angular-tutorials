@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, resource, signal } from '@angular/core';
+import { Component, computed, inject, resource, signal } from '@angular/core';
+import { CustomResourceService } from './custom-resource.service';
 
 @Component({
   selector: 'app-root',
@@ -10,25 +11,14 @@ import { Component, computed, resource, signal } from '@angular/core';
 export class AppComponent {
   title = 'v-19';
 
-  id = signal(1);
+  cs = inject(CustomResourceService);
 
-  todoResource = resource({
-    request: () => ({id: this.id()}),
-    loader: ({request}) => fetch(`https://jsonplaceholder.typicode.com/todos/${request.id}`).then((res) => res.json())
-  });
-
-  todo = computed(() => JSON.stringify(this.todoResource.value()));
+  todo = computed(() => JSON.stringify(this.cs.todoResource.value()));
 
   next() {
-    this.id.update((value) => value + 1);
+    this.cs.id.update((value) => value + 1);
   }
-  // todosResource = resource({
-  //   loader: () => fetch(`https://jsonplaceholder.typicode.com/todos`).then((res) => res.json())
-  // });
-
-  // list = computed(() => this.todosResource.value());
-
   reload() {
-    this.todoResource.reload();
+    this.cs.todoResource.reload();
   }
 }
