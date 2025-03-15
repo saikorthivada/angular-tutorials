@@ -1,1 +1,18 @@
-<h1>Techshareskk - V-19</h1>
+<div class="d-flex justify-content-center mt-2">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Item List</h5>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="item" placeholder="Enter Item" [(ngModel)]="modalValue">
+      </div>
+      <button class="btn btn-success w-100" (click)="addItem()"> Add Item</button>
+      <div class="pt-1">
+        <ul>
+          @for (item of list(); track item) {
+          <li>{{item}}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
