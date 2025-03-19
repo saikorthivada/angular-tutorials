@@ -1,0 +1,21 @@
+<div class="mt-5">
+  <h3 class="text-center">Code Review Feedback</h3>
+  <div class="d-flex flex-wrap gap-3 justify-content-center">
+    @for (aspect of aspects(); track aspect.id;let index=$index) {
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title text-center">{{aspect.label}}</h5>
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-success" (click)="voteHandler(index, 'upvote')">Up vote</button>
+          <button class="btn btn-danger"  (click)="voteHandler(index, 'downvote')">Down vote</button>
+        </div>
+        <div class="text-center">
+          <p class="mb-0"><strong>Upvote</strong>: {{aspect.upvote}}</p>
+          <p><strong>Downvote</strong>: {{aspect.downvote}}</p>
+        </div>
+      </div>
+    </div>
+    }
+
+  </div>
+</div>
